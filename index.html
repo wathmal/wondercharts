@@ -106,8 +106,8 @@
       appId      : '564283890385172', // Facebook App ID
       status     : true, // check Facebook Login status
       cookie     : true, // enable cookies to allow Parse to access the session
-      xfbml      : true
-	  
+      xfbml      : true,
+	version    : 'v2.1'  
     });
  
     // Run code after the Facebook SDK is loaded.
@@ -138,7 +138,7 @@ Parse.FacebookUtils.logIn(null, {
 });
 }
 </script>
-
+<div class="fb-login-button" onclick="FacebookLogin();" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
 	<div id="bd1">
          <nav id="nav1" class="action-nav">
          <a aria-label="Sign Up Free" class="btn-primary-small pop" href="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
@@ -159,8 +159,9 @@ Parse.FacebookUtils.logIn(null, {
                   <label style="color:white;float:left;margin-top:20;margin-left:-18;width:50%;"><input type="checkbox" id="StayLoggedIn"> Keep me signed in</label>
                   <label onclick="ChangePass();" style="cursor:pointer;color:white;float:left;margin-top:10;margin-left:-50;width:50%;font-size:small;text-decoration:underline;">I forgot my password</label>
                </fieldset>
-            </form>
-			<div class="fb-login-button" onclick="FacebookLogin();" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
+            
+			</form>
+			
          </div>
          <div id="bd4" style="display:none;width:350;text-align:left;">
             <form>
