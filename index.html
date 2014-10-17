@@ -1,6 +1,9 @@
 <html>
    <head>
       <base target="_parent" />
+	  
+	
+	  
       <script type="text/javascript" src="http://sslstatic.wix.com/services/js-sdk/1.35.0/js/Wix.js"></script>
       <link rel="stylesheet" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/69e9b3c724ec043f2d13b17ab80c24760d15d9a8/dropdownlogin.css" />
       <link rel="stylesheet" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/a6d18d591ffc677882b201d777192a3c20f5adaf/loginmenu.css" />
@@ -93,7 +96,50 @@
       </script>
    </head>
    <body id="body" style="background-color:transparent;text-align:right;margin-right:30px;">
-      <div id="bd1">
+
+<script>
+  // Initialize Parse
+  Parse.initialize("YOUR_APP_ID", "YOUR_JAVASCRIPT_KEY");
+ 
+  window.fbAsyncInit = function() {
+    Parse.FacebookUtils.init({ // this line replaces FB.init({
+      appId      : '564283890385172', // Facebook App ID
+      status     : true, // check Facebook Login status
+      cookie     : true, // enable cookies to allow Parse to access the session
+      xfbml      : true
+	  
+    });
+ 
+    // Run code after the Facebook SDK is loaded.
+  };
+ 
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "http://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>   
+
+<script>
+function FacebookLogin(){
+Parse.FacebookUtils.logIn(null, {
+  success: function(user) {
+    if (!user.existed()) {
+      alert("User signed up and logged in through Facebook!");
+    } else {
+      alert("User logged in through Facebook!");
+    }
+  },
+  error: function(user, error) {
+    alert("User cancelled the Facebook login or did not fully authorize.");
+  }
+});
+}
+</script>
+
+	<div id="bd1">
          <nav id="nav1" class="action-nav">
          <a aria-label="Sign Up Free" class="btn-primary-small pop" href="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
          Sign Up Free
@@ -114,6 +160,7 @@
                   <label onclick="ChangePass();" style="cursor:pointer;color:white;float:left;margin-top:10;margin-left:-50;width:50%;font-size:small;text-decoration:underline;">I forgot my password</label>
                </fieldset>
             </form>
+			<div class="fb-login-button" onclick="FacebookLogin();" data-max-rows="1" data-size="large" data-show-faces="false" data-auto-logout-link="true"></div>
          </div>
          <div id="bd4" style="display:none;width:350;text-align:left;">
             <form>
