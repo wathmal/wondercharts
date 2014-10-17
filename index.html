@@ -1,71 +1,156 @@
-<!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Wondercharts by wondercharts</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Wondercharts</h1>
-        <p></p>
-
-        <p class="view"><a href="https://github.com/wondercharts/wondercharts">View the Project on GitHub <small>wondercharts/wondercharts</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/wondercharts/wondercharts/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/wondercharts/wondercharts/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/wondercharts/wondercharts">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/wondercharts">wondercharts</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+   <head>
+      <base target="_parent" />
+      <script type="text/javascript" src="http://sslstatic.wix.com/services/js-sdk/1.35.0/js/Wix.js"></script>
+      <link rel="stylesheet" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/69e9b3c724ec043f2d13b17ab80c24760d15d9a8/dropdownlogin.css" />
+      <link rel="stylesheet" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/a6d18d591ffc677882b201d777192a3c20f5adaf/loginmenu.css" />
+      <script type=text/javascript">
+         document.getElementById("IFrame_i1c762ms").contentWindow.document.body.style.backgroundColor="transparent";
+      </script>
+      <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->		
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+      <script>
+         $(document).ready(function(){
+         $('#login-trigger').click(function(){
+         	$(this).next('#login-content').slideToggle();
+         	$(this).toggleClass('active');					
+         	
+         	if ($(this).hasClass('active')) $(this).find('span').html('&#x25B2;')
+         		else $(this).find('span').html('&#x25BC;')
+         	})
+         });
+         
+      </script>
+      <script src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
+      <script>
+         Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
+      </script>
+      <script>
+         function Login1(){		  
+         
+         	  Parse.User.logIn(document.getElementById("username").value, document.getElementById("password").value, {
+          success: function(user) {
+             if (document.getElementById("StayLoggedIn").checked == true){
+         	user.set("StayLoggedIn", "true")}
+          if (document.getElementById("StayLoggedIn").checked == false){
+         	user.set("StayLoggedIn", "false")}
+          user.save();
+          window.location.href = "http://www.wondercharts.com/#!User_Profile/cnvm";
+          },
+          error: function(user, error) {
+             alert(error);
+          }
+         });
+         }
+         
+      </script>
+      <script>
+         function Logout(){
+         
+         if (Parse.User.current != null){
+         Parse.User.logOut();
+         document.getElementById("bd2").style.display="none";
+         location.reload();
+         }
+         
+         }	
+         	
+      </script>
+      <script>
+         function runScript(e) {
+            if (e.keyCode == 13) {
+                Login1();
+                return false;
+            }
+         }
+      </script>
+      <script>
+         function reload1(){
+         window.top.location.href("http://www.wondercharts.com/#!User_Profile/cnvm");
+         }
+      </script>
+      <script>
+         function ChangePass(){
+         document.getElementById("bd3").style.display="none";
+         document.getElementById("bd4").style.display="block";
+         }
+      </script>
+	  
+	        <script>
+         function ChangePass2(){
+			Parse.User.requestPasswordReset(document.getElementById("resetemail").value, {
+				success: function() {
+					alert("Please check your email and click on the password reset link");
+				},
+				error: function(error) {
+					// Show the error message somewhere
+					alert("Error: " + error.code + " " + error.message);
+				}
+			});
+         }
+      </script>
+   </head>
+   <body id="body" style="background-color:transparent;text-align:right;margin-right:30px;">
+      <div id="bd1">
+         <nav id="nav1" class="action-nav">
+         <a aria-label="Sign Up Free" class="btn-primary-small pop" href="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
+         Sign Up Free
+         </a><a aria-label="Log In" id="login-trigger" target="_self" class="nav-login nav-link" href="#" role="button">
+         Log In <span>&#x25BC;</span>
+         </a>
+         <div id="login-content" style="background-image:url('https://raw.githubusercontent.com/wondercharts/wondercharts/master/bg.jpg');border-color:#4B454C;border-width:thin;border-style:solid;top:0%;margin-top:50;">
+            <div id="bd3" style="display:block">
+            <form>
+               <fieldset id="inputs">
+                  <input id="username" type="email" name="Email" placeholder="Your email address" required>   
+                  <input id="password" onkeypress="return runScript(event)" type="password" name="Password" placeholder="Password" required>
+               </fieldset>
+               <fieldset id="actions">
+                  <a onclick="Login1();" aria-label="Login" class="btn-primary-small pop" style="background-color:#FCCF62;color:#FCCF62;margin-top:10;width:15%;height:20;float:right;vertical-align:middle;" ref="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
+                  Login</a>
+                  <label style="color:white;float:left;margin-top:20;margin-left:-18;width:50%;"><input type="checkbox" id="StayLoggedIn"> Keep me signed in</label>
+                  <label onclick="ChangePass();" style="cursor:pointer;color:white;float:left;margin-top:10;margin-left:-50;width:50%;font-size:small;text-decoration:underline;">I forgot my password</label>
+               </fieldset>
+            </form>
+         </div>
+         <div id="bd4" style="display:none;width:350;text-align:left;">
+            <form>
+               <label  style="color:white;margin-top:0;margin-bottom:40;width:50%;font-size:x-large;">Reset Password</label>
+               <fieldset id="inputs1">
+                  <input id="resetemail" type="email" style="margin-top:20;" name="Email" placeholder="Your email address" required>   
+               </fieldset>
+               <fieldset id="actions1">
+                  <a onclick="ChangePass2();" aria-label="Login6" class="btn-primary-small pop" style="background-color:#FCCF62;color:#FCCF62;margin-top:20;width:89%;height:16;float:left;vertical-align:middle;font-size:medium;padding-bottom:23;" ref="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
+                  Send reset password link</a>
+               </fieldset>
+            </form>
+         </div>
+      
+      </div>
+      </div>
+      <div id="bd2" style="display:none">
+         <a aria-label="Log In" class="nav-login nav-link" href="#" onclick="reload1();" style="padding: 2 2 2 2;margin-right:2px;" onmouseover="this.style.backgroundColor='#ffffff';"  role="button">
+         <label style="cursor:pointer;" id="NameOfUser"></label>
+         </a>
+         <a aria-label="Log In" target="_self" class="nav-login nav-link" onClick="Logout();" href="#" style="padding: 2 2 2 2;margin-right:30px;" onmouseover="this.style.backgroundColor='#ffffff';" role="button">
+         <label style="cursor:pointer" id="Logout"> (Logout) </label>
+         </a>
+      </div>
+      <script>
+         var CurrentUser = Parse.User.current();
+         
+         if (CurrentUser && CurrentUser.attributes.StayLoggedIn == "true"){
+         document.getElementById("bd1").style.display="none";
+         var CurrentUser1 = Parse.User.current();
+         var FullName = "";
+         FullName +="Hi, ";
+         FullName += CurrentUser1.attributes.name;
+         document.getElementById("NameOfUser").innerHTML = FullName;
+         document.getElementById("bd2").style.display="block";
+         
+         }
+      </script>
+   </body>
 </html>
