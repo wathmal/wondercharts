@@ -191,7 +191,7 @@ Parse.FacebookUtils.logIn(null, {
       <script>
          var CurrentUser = Parse.User.current();
          
-         if (CurrentUser && CurrentUser.attributes.StayLoggedIn == "true"){
+         if (CurrentUser){
          document.getElementById("bd1").style.display="none";
          var CurrentUser1 = Parse.User.current();
          var FullName = "";
