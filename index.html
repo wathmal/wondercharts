@@ -1,9 +1,6 @@
 <html>
    <head>
       <base target="_parent" />
-	  
-	
-	  
       <script type="text/javascript" src="http://sslstatic.wix.com/services/js-sdk/1.35.0/js/Wix.js"></script>
       <link rel="stylesheet" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/69e9b3c724ec043f2d13b17ab80c24760d15d9a8/dropdownlogin.css" />
       <link rel="stylesheet" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/a6d18d591ffc677882b201d777192a3c20f5adaf/loginmenu.css" />
@@ -96,51 +93,7 @@
       </script>
    </head>
    <body id="body" style="background-color:transparent;text-align:right;margin-right:30px;">
-
-<script>
-  // Initialize Parse
-  Parse.initialize("YOUR_APP_ID", "YOUR_JAVASCRIPT_KEY");
- 
-  window.fbAsyncInit = function() {
-    Parse.FacebookUtils.init({ // this line replaces FB.init({
-      appId      : '564283890385172', // Facebook App ID
-      status     : true, // check Facebook Login status
-      cookie     : true, // enable cookies to allow Parse to access the session
-      xfbml      : true,
-	version    : 'v2.1',
-	oauth      : true
-    });
- 
-    // Run code after the Facebook SDK is loaded.
-  };
- 
-  (function(d, s, id){
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
-    js = d.createElement(s); js.id = id;
-    js.src = "http://connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>   
-
-<script>
-function FacebookLogin(){
-Parse.FacebookUtils.logIn(null, {
-  success: function(user) {
-    if (!user.existed()) {
-      alert("User signed up and logged in through Facebook!");
-    } else {
-      alert("User logged in through Facebook!");
-    }
-  },
-  error: function(user, error) {
-    alert(alert);
-  }
-});
-}
-</script>
-
-	<div id="bd1">
+      <div id="bd1">
          <nav id="nav1" class="action-nav">
          <a aria-label="Sign Up Free" class="btn-primary-small pop" href="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
          Sign Up Free
@@ -157,14 +110,10 @@ Parse.FacebookUtils.logIn(null, {
                <fieldset id="actions">
                   <a onclick="Login1();" aria-label="Login" class="btn-primary-small pop" style="background-color:#FCCF62;color:#FCCF62;margin-top:10;width:15%;height:20;float:right;vertical-align:middle;" ref="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
                   Login</a>
-                  <label style="color:white;float:left;margin-top:7;margin-left:-56;font-size:small;width:50%;"><input type="checkbox" id="StayLoggedIn"> Keep me signed in</label>
-                  <label onclick="ChangePass();" style="cursor:pointer;color:white;float:left;margin-top:29;margin-left:-184;width:50%;font-size:small;text-decoration:underline;">I forgot my password</label>
+                  <label style="color:white;float:left;margin-top:20;margin-left:-18;width:50%;"><input type="checkbox" id="StayLoggedIn"> Keep me signed in</label>
+                  <label onclick="ChangePass();" style="cursor:pointer;color:white;float:left;margin-top:10;margin-left:-50;width:50%;font-size:small;text-decoration:underline;">I forgot my password</label>
                </fieldset>
-            <div onclick="FacebookLogin();" style="cursor:pointer;width:203;height:35;margin-top:21;margin-right:20;float:left;background-image:url('https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/fblogin.png');"></div>
-			<!--<div onclick="TwitterLogin();" style="cursor:pointer;width:202;height:41;margin-top:20;float:left;background-image:url('https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/twitterlogin.png');"></div>-->
-			
-			</form>
-			
+            </form>
          </div>
          <div id="bd4" style="display:none;width:350;text-align:left;">
             <form>
@@ -192,7 +141,7 @@ Parse.FacebookUtils.logIn(null, {
       <script>
          var CurrentUser = Parse.User.current();
          
-         if (CurrentUser){
+         if (CurrentUser && CurrentUser.attributes.StayLoggedIn == "true"){
          document.getElementById("bd1").style.display="none";
          var CurrentUser1 = Parse.User.current();
          var FullName = "";
@@ -205,3 +154,5 @@ Parse.FacebookUtils.logIn(null, {
       </script>
    </body>
 </html>
+
+
