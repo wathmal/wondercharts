@@ -55,7 +55,7 @@
 <script>
 
 function FacebookLogin(){
-Parse.FacebookUtils.logIn("email,gender,first_name,last_name,age_range,locale"), {
+Parse.FacebookUtils.logIn("email,gender,first_name,last_name,age_range,locale", {
   success: function(user) {
     if (!user.existed()) {
 	
