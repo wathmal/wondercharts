@@ -37,7 +37,7 @@
           if (document.getElementById("StayLoggedIn").checked == false){
          	user.set("StayLoggedIn", "false")}
           user.save();
-          window.location.href = "http://www.wondercharts.com/#!User_Profile/cnvm";
+          location.reload();
           },
           error: function(user, error) {
              alert(error);
