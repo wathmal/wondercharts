@@ -158,7 +158,7 @@ Parse.FacebookUtils.logIn(null, {
                   Login</a>
                   <label style="color:white;float:left;margin-top:20;margin-left:-18;width:50%;"><input type="checkbox" id="StayLoggedIn"> Keep me signed in</label>
                   <label onclick="ChangePass();" style="cursor:pointer;color:white;float:left;margin-top:10;margin-left:-50;width:50%;font-size:small;text-decoration:underline;">I forgot my password</label>
-				   <a onclick="FacebookLogin();" aria-label="Login"  style="cursor:pointer;background-image:url('https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/fblogin.png');margin-top:69;margin-left:-129;width:41%;height:38;float:left;" role="button">
+				   <a onclick="FacebookLogin();" aria-label="Login"  style="cursor:pointer;background-image:url('https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/fblogin.png');margin-top:57;margin-left:-129;width:56%;height:38;float:left;" role="button">
 				   </a>
                </fieldset>
             </form>
@@ -189,7 +189,7 @@ Parse.FacebookUtils.logIn(null, {
       <script>
          var CurrentUser = Parse.User.current();
          
-         if (CurrentUser && CurrentUser.attributes.StayLoggedIn == "true"){
+         if (CurrentUser){
          document.getElementById("bd1").style.display="none";
          var CurrentUser1 = Parse.User.current();
          var FullName = "";
