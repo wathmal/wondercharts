@@ -27,6 +27,52 @@
       <script>
          Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
       </script>
+	  
+	  <script>
+ 
+ 
+  window.fbAsyncInit = function() {
+    Parse.FacebookUtils.init({ // this line replaces FB.init({
+      appId      : '564283890385172', // Facebook App ID
+      status     : true, // check Facebook Login status
+      cookie     : true, // enable cookies to allow Parse to access the session
+      xfbml      : true,
+	  version    : 'v2.1'
+    });
+ 
+    // Run code after the Facebook SDK is loaded.
+  };
+ 
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<script>
+
+function FacebookLogin(){
+Parse.FacebookUtils.logIn(null, {
+  success: function(user) {
+    if (!user.existed()) {
+      alert("User signed up and logged in through Facebook!");
+	  location.reload();
+    } else {
+      alert("User logged in through Facebook!");
+	  location.reload();
+    }
+  },
+  error: function(user, error) {
+    alert("User cancelled the Facebook login or did not fully authorize.");
+  }
+});
+}
+
+</script>
+	  
       <script>
          function Login1(){		  
          
@@ -112,6 +158,8 @@
                   Login</a>
                   <label style="color:white;float:left;margin-top:20;margin-left:-18;width:50%;"><input type="checkbox" id="StayLoggedIn"> Keep me signed in</label>
                   <label onclick="ChangePass();" style="cursor:pointer;color:white;float:left;margin-top:10;margin-left:-50;width:50%;font-size:small;text-decoration:underline;">I forgot my password</label>
+				   <a onclick="FacebookLogin();" aria-label="Login"  style="cursor:pointer;background-image:url('https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/fblogin.png');margin-top:69;margin-left:-129;width:41%;height:38;float:left;" role="button">
+				   </a>
                </fieldset>
             </form>
          </div>
