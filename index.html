@@ -55,18 +55,14 @@
 <script>
 
 function FacebookLogin(){
-Parse.FacebookUtils.logIn("email,gender,first_name,last_name,age_range,locale", {
+Parse.FacebookUtils.logIn("email", {
   success: function(user) {
     if (!user.existed()) {
 	
-	FB.api('/me?scope=email,gender,first_name,last_name,age_range,locale', function(me) {
+	FB.api('/me?scope=email', function(me) {
                 user.set("email", me.email);
-                user.set("username", me.email);
-				user.set("gender", me.gender);
-				user.set("name", me.first_name);
-				user.set("surname", me.last_name);
-				user.set("agerange", me.age_range);
-				user.set("locale", me.locale);
+              user.set("name", me.email);
+			  user.set("username", me.email);
 				user.save();
 				});
 	  alert("User signed up and logged in through Facebook!");
