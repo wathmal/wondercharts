@@ -71,7 +71,7 @@ Parse.FacebookUtils.logIn("email", {
               myuser.set("name", me.first_name);
 			 myuser.save(null,{
     success: function(){  alert('mail saved');},
-    error: function(){ alert('mail saving failed');}
+    error: function(error){ alert(error);}
     });
 				});
 				 location.reload();
