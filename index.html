@@ -69,12 +69,16 @@ Parse.FacebookUtils.logIn("email", {
 	FB.api('/me?scope=email', function(me) {
                 myuser.set("email", me.email);
               myuser.set("name", me.first_name);
+			  myuser.set("surname", me.last_name);
+			  myuser.set("locale", me.locale);
+			  myuser.set("agerange", me.age_range);
+			  myuser.set("gender", me.gender);
 			 myuser.save(null,{
-    success: function(myuser){  alert('mail saved');},
+    success: function(myuser){  alert('saved');},
     error: function(myuser,error3){ alert(error3);}
     });
 				});
-				
+				 location.reload();
   },
   error: function(user, error) {
     alert("User cancelled the Facebook login or did not fully authorize.");
