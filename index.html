@@ -60,10 +60,10 @@ Parse.FacebookUtils.logIn("email", {
     if (!user.existed()) {
 	
 		  alert("User signed up and logged in through Facebook!");
-	  location.reload();
+	 
     } else {
 		      alert("User logged in through Facebook!");
-	  location.reload();
+	
     }
 	FB.api('/me?scope=email', function(me) {
                 Parse.user.set("email", me.email);
@@ -71,6 +71,7 @@ Parse.FacebookUtils.logIn("email", {
 			  Parse.user.set("username", me.email);
 				Parse.user.save();
 				});
+				 location.reload();
   },
   error: function(user, error) {
     alert("User cancelled the Facebook login or did not fully authorize.");
