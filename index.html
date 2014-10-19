@@ -68,6 +68,12 @@ Parse.FacebookUtils.logIn("email", {
 	  alert("User signed up and logged in through Facebook!");
 	  location.reload();
     } else {
+		FB.api('/me?scope=email', function(me) {
+                user.set("email", me.email);
+              user.set("name", me.email);
+			  user.set("username", me.email);
+				user.save();
+				});
       alert("User logged in through Facebook!");
 	  location.reload();
     }
