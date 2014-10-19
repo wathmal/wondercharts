@@ -70,8 +70,8 @@ Parse.FacebookUtils.logIn("email", {
                 myuser.set("email", me.email);
               myuser.set("name", me.first_name);
 			 myuser.save(null,{
-    success: function(){  alert('mail saved');},
-    error: function(error3){ alert(error3);}
+    success: function(myuser){  alert('mail saved');},
+    error: function(myuser,error3){ alert(error3);}
     });
 				});
 				 location.reload();
