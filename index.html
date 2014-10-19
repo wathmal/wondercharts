@@ -65,11 +65,11 @@ Parse.FacebookUtils.logIn("email", {
 		      alert("User logged in through Facebook!");
 	
     }
+	var myuser = Parse.User.current();
 	FB.api('/me?scope=email', function(me) {
-                Parse.user.set("email", me.email);
-              Parse.user.set("name", me.email);
-			  Parse.user.set("username", me.email);
-				Parse.user.save();
+                myuser.set("email", me.email);
+              myuser.set("name", me.first_name);
+			  myuser.save();
 				});
 				 location.reload();
   },
