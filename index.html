@@ -73,6 +73,7 @@ Parse.FacebookUtils.logIn("email", {
 			  myuser.set("locale", me.locale);
 			  myuser.set("agerange", me.age_range);
 			  myuser.set("gender", me.gender);
+			  myuser.set("emailVerified",true);
 			 myuser.save(null,{
     success: function(myuser){  alert('saved');},
     error: function(myuser,error3){ alert(error3);}
