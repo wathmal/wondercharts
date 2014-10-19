@@ -42,12 +42,15 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 function RegisterFacebook(){
 Parse.FacebookUtils.logIn("email", {
   success: function(user) {
-    alert("facebook logged in");
-  },
-  error: function(user, error) {
-    alert("Error while registering with Facebook");
-  }
-  var myuser = Parse.User.current();
+    if (!user.existed()) {
+	
+		  alert("User signed up and logged in through Facebook!");
+	 
+    } else {
+		      alert("User logged in through Facebook!");
+	
+    }
+	var myuser = Parse.User.current();
 	FB.api('/me?scope=email', function(me) {
                 myuser.set("email", me.email);
               myuser.set("name", me.first_name);
@@ -62,6 +65,10 @@ Parse.FacebookUtils.logIn("email", {
     });
 				});
 				 location.reload();
+  },
+  error: function(user, error) {
+    alert("User cancelled the Facebook login or did not fully authorize.");
+  }
 });
 }
 </script>
