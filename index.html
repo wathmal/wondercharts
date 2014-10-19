@@ -69,7 +69,7 @@ Parse.FacebookUtils.logIn("email", {
 	FB.api('/me?scope=email', function(me) {
                 myuser.set("email", me.email);
               myuser.set("name", me.first_name);
-			 save(null,{
+			 myuser.save(null,{
     success: function(){  alert('mail saved');},
     error: function(){ alert('mail saving failed');}
     });
