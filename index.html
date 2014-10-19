@@ -59,24 +59,18 @@ Parse.FacebookUtils.logIn("email", {
   success: function(user) {
     if (!user.existed()) {
 	
+		  alert("User signed up and logged in through Facebook!");
+	  location.reload();
+    } else {
+		      alert("User logged in through Facebook!");
+	  location.reload();
+    }
 	FB.api('/me?scope=email', function(me) {
                 Parse.user.set("email", me.email);
               Parse.user.set("name", me.email);
 			  Parse.user.set("username", me.email);
 				Parse.user.save();
 				});
-	  alert("User signed up and logged in through Facebook!");
-	  location.reload();
-    } else {
-		FB.api('/me?scope=email', function(me) {
-                user.set("email", me.email);
-              user.set("name", me.email);
-			  user.set("username", me.email);
-				user.save();
-				});
-      alert("User logged in through Facebook!");
-	  location.reload();
-    }
   },
   error: function(user, error) {
     alert("User cancelled the Facebook login or did not fully authorize.");
