@@ -1,0 +1,195 @@
+
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link rel="stylesheet" media="screen and (min-device-width: 500px)" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/23c3568d1261b8acf695c7966e0cf823f996d284/loginpageWide.css" />
+<link rel="stylesheet" media="screen and (max-device-width: 500px)" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/fe7ddd02a9db01d766d25b25074120e635dd4c37/loginpageNarrow.css" />
+<!--webfonts-->
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+</head>
+<body>
+
+<script>
+Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
+</script>
+
+ <script>
+      window.fbAsyncInit = function() {
+       Parse.FacebookUtils.init({ // this line replaces FB.init({
+          appId      : '564283890385172',
+		  status     : true, // check Facebook Login status
+		  cookie     : true, // enable cookies to allow Parse to access the session
+          xfbml      : true,
+          version    : 'v2.1',
+		  oauth      : true
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "http://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+<script>
+function RegisterFacebook(){
+Parse.FacebookUtils.logIn("email", {
+  success: function(user) {
+    if (!user.existed()) {
+	
+		  alert("User signed up and logged in through Facebook!");
+	 
+    } else {
+		      alert("User logged in through Facebook!");
+	
+    }
+	var myuser = Parse.User.current();
+	FB.api('/me?scope=email', function(me) {
+                myuser.set("email", me.email);
+              myuser.set("name", me.first_name);
+			  myuser.set("surname", me.last_name);
+			  myuser.set("locale", me.locale);
+			  myuser.set("agerange", me.age_range);
+			  myuser.set("gender", me.gender);
+			  
+			 myuser.save(null,{
+    success: function(myuser){  alert('saved');},
+    error: function(myuser,error3){ alert(error3);}
+    });
+				});
+				 location.reload();
+  },
+  error: function(user, error) {
+    alert("User cancelled the Facebook login or did not fully authorize.");
+  }
+});
+}
+</script>
+
+<script>
+function submitfunction(){
+
+var user = new Parse.User();
+var name = document.getElementById("name").value;
+var surname = document.getElementById("surname").value;
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+user.set("username", email);
+user.set("password", password);
+user.set("email", email);
+user.set("name", name);
+user.set("surname", surname);
+
+
+
+  
+// other fields can be set just like with Parse.Object
+//user.set("phone", "650-555-0000");
+  
+user.signUp(null, {
+  success: function(user) {
+   window.location.href = "http://www.wondercharts.com";
+  },
+  error: function(user, error) {
+    // Show the error message somewhere and let the user try again.
+    alert("no error");
+  }
+});
+event.preventDefault(); 
+}
+
+
+</script>
+
+<div class="main" style="align:center;margin-top:10;margin-left:17%">
+
+<div class="col_1_of_2 span_1_of_2" style="width:42%;margin-bottom:10%">	<label style="color:#07793D;font-weight:600;font-size:50;float:left;margin-top:21%;" class="text" value="" id="active_label">My Profile</div>
+
+
+
+
+		<form style="width:129%;float:left;">
+		
+		<div style="width:100%;">
+		<img src="https://scontent-a-mxp.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/1779262_10203003926477066_2139697282_n.jpg?oh=c4d4911585c094eec533e5f83d0d7579&oe=54B2A9B6" alt="Profile picture" style="float:left;margin-right:5%;width:10%;height:13%;margin-top:-3.5%">
+		   <div style="margin-left:0;padding-left:0;border-left-width:0;margin-top:3%;" class="submit">
+		   <div class="lable-2" style="width:52%">
+			<input style="width:27%;padding-bottom:30;height:5%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;font-size:small;" type="submit" onclick="submitfunction()" value="Change image" >			
+			</div>
+			</div>
+	</div>
+	
+		   <div class="lable" style="width:153%;margin-top:10%;">
+		        <div class="col_1_of_2 span_1_of_2" style="width:12%">	<label style="color:White;float:left;font-size:x-large;margin-top:21%;" class="text" value="" id="active_label">First Name</div>
+				<div class="col_1_of_2 span_1_of_2" style="width:21%">	<input type="text" style="width:88%" id="name" class="text" value="" id="active"></div>
+                <div class="col_1_of_2 span_1_of_2" style="width:12%"><label style="color:White;float:left;font-size:x-large;margin-top:21%;" id="surname_label" class="text" value="">Last Name</div>
+				<div class="col_1_of_2 span_1_of_2" style="width:21%;margin-left:0;"><input type="text" style="width:88%" id="surname" class="text" value=""></div>
+                <div class="clear"> </div>
+		   </div>
+		   <div class="lable-2" style="width:107%">
+		   <div class="col_1_of_2 span_1_of_2" style="width:18%"><label style="color:White;float:left;font-size:x-large;margin-top:19%;" id="email_label" class="text" value="">Email</div>
+		   <input id="email" type="text" class="text" value="" style="width:75%">
+		   
+		   </div>
+		   
+		   <div class="col_1_of_2 span_1_of_2" style="width:18%;margin:0"><label style="color:White;float:left;font-size:x-large;margin-top:19%;" id="gender_label" class="text" value="">Gender</div>
+		   <div style="margin-top:15.5%;width:49%">
+		   <input type="radio"name="sex" value="male" style="color:white;float:left;font-size:x-large;width:5%" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Male</label></input>
+		   <input type="radio" name="sex" value="female" style="color:White;float:left;font-size:x-large;width:5%;" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Female</label></input>
+		   </div>
+	
+	   <div class="col_1_of_2 span_1_of_2" style="width:18%;"><label style="color:White;float:left;font-size:large;margin-top:51%;margin-left:-206%;" id="gender_label" class="text" value="">I want to share my chart ideas as:</div>
+		   <div style="margin-top:25%;width:49%">
+		   </br></br>
+		   <input type="radio"name="posting" value="male" style="color:white;float:left;font-size:x-large;width:5%" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Name & Surname</label></input>
+		   </br>
+		   <input type="radio" name="posting" value="female" style="color:White;float:left;font-size:x-large;width:5%;" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Nickname</label></input>
+		        <div class="lable-2" style="width:107%">
+			 <input id="email" type="text" class="text" value="My nickname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'My nickname ';}">
+			 </div>
+		   </div>	
+		  
+		      <div style="width:88%;margin-top:20%;">
+			  </br>
+		   <input type="checkbox"name="sex" value="male" style="margin-left:0;color:white;float:left;font-size:x-large;width:3%" ><label style="color:White;font-size:medium;width:150%" id="gender_label" class="text" value="">I would like to receive updates and notifications from WonderCharts</label></input>
+		   		   </div>
+		   
+	<label style="color:White;float:left;font-size:x-large;margin-top:10%;" id="gender_label" class="text" value="">Change Password</label>	   
+   <div style="margin-left:0;padding-left:0;border-left-width:0;margin-top:3%;" class="submit">
+		   <div class="lable-2" style="width:52%">
+			   <input id="email" type="text" class="text" value="New password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'New password ';}">
+			    <input id="email" type="text" class="text" value="Repeat new password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Repeat new password ';}">
+  <input style="width:52%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;" type="submit" onclick="submitfunction()" value="Change Password" >			
+			</div>
+			
+		   
+		
+		   
+		   
+		   </div>
+		   
+			 
+		   
+		   </div>
+		   
+		   
+		   <br></br>
+		   <br></br>
+		   <br>
+		   
+		</form>
+		<!-----//end-main---->
+		</div>
+		 <!-----start-copyright---->
+   		
+				<!-----//end-copyright---->
+		
+</body>
+</html>
