@@ -136,13 +136,26 @@ document.getElementById("email").value=currentUser.attributes.email;
 	</script>
 	
 	<script>
-	var query = new Parse.Query("User");
+				var query = new Parse.Query("user");
 query.equalTo("email", document.getElementById("email").value);
  
 query.find().then(function(results) {
-     document.getElementById("surname").value=results[0].attributes.surname;
- });
-
+  // Create a trivial resolved promise as a base case.
+  var promise = Parse.Promise.as();
+  _.each(results, function(result) {
+  document.getElementById("surname").value=results[0].attributes.surname;
+    // For each item, extend the promise with a function to delete it.
+    promise = promise.then(function() {
+      // Return a promise that will be resolved when the delete is finished.
+      return result.destroy();
+    });
+  });
+  return promise;
+ 
+}).then(function() {
+  // Every comment was deleted.
+});
+		
 	</script>
 		
 </body>
