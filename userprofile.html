@@ -74,16 +74,16 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		   
 		   <div class="col_1_of_2 span_1_of_2" style="width:18%;margin:0"><label style="color:White;float:left;font-size:x-large;margin-top:19%;" id="gender_label" class="text" value="">Gender</div>
 		   <div style="margin-top:15.5%;width:49%">
-		   <input type="radio"name="sex" value="male" style="color:white;float:left;font-size:x-large;width:5%" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Male</label></input>
-		   <input type="radio" name="sex" value="female" style="color:White;float:left;font-size:x-large;width:5%;" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Female</label></input>
+		   <input type="radio" id="male" name="sex" value="male" style="color:white;float:left;font-size:x-large;width:5%" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Male</label></input>
+		   <input type="radio" id="female" name="sex" value="female" style="color:White;float:left;font-size:x-large;width:5%;" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Female</label></input>
 		   </div>
 	
 	   <div class="col_1_of_2 span_1_of_2" style="width:18%;"><label style="color:White;float:left;font-size:large;margin-top:51%;margin-left:-206%;" id="gender_label" class="text" value="">I want to share my chart ideas as:</div>
 		   <div style="margin-top:25%;width:49%">
 		   </br></br>
-		   <input type="radio"name="posting" value="postbyname" style="color:white;float:left;font-size:x-large;width:5%" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Name & Surname</label></input>
+		   <input type="radio" id="nameposting" name="posting" value="postbyname" style="color:white;float:left;font-size:x-large;width:5%" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Name & Surname</label></input>
 		   </br>
-		   <input type="radio" name="posting" value="postbynickname" style="color:White;float:left;font-size:x-large;width:5%;" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Nickname</label></input>
+		   <input type="radio" id="nicknameposting" name="posting" value="postbynickname" style="color:White;float:left;font-size:x-large;width:5%;" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Nickname</label></input>
 		        <div class="lable-2" style="width:107%">
 			 <input id="nickname" type="text" class="text" value="My nickname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'My nickname ';}">
 			 </div>
@@ -143,14 +143,19 @@ query.equalTo("email", document.getElementById("email").value);
 query.find().then(function(results) {
   
   document.getElementById("surname").value=results[0].attributes.surname;
-document.getElementByName("sex").value=results[0].attributes.gender;
+if(results[0].attributes.gender=="male"){
+document.getElementById("male").checked=true;
+}
+else if (results[0].attributes.gender=="female"){
+document.getElementById("female").checked=true;
+}
 var sharetype = results[0].attributes.ShareWithFullName;
 
 if (sharetype){
-document.getElementByName("posting").value="postbyname"
+document.getElementById("nameposting").checked=true;
 }
 else {
-document.getElementByName("posting").value="postbynickname"
+document.getElementById("nicknameposting").checked=true;
 document.getElementById("nickname").value=results[0].attributes.Nickname;
 }
 
