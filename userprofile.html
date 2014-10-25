@@ -135,6 +135,24 @@ document.getElementById("email").value=currentUser.attributes.email;
 }
 	</script>
 	
+	
+	<script>
+				var query = new Parse.Query("User");
+query.equalTo("email", document.getElementById("email").value);
+ 
+query.find().then(function(results) {
+  
+  document.getElementById("surname").value=results[0].attributes.surname;
+
+ 
+ 
+}).then(function() {
+  // Every comment was deleted.
+});
+		
+	</script>
+	
+	
 	<script>
 				var query = new Parse.Query("User");
 query.equalTo("email", document.getElementById("email").value);
