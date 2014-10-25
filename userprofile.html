@@ -38,15 +38,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
        }(document, 'script', 'facebook-jssdk'));
     </script>
 	
-	<script>
-	var currentUser = Parse.User.current();
-if (currentUser) {
-document.getElementById("name").value=currentUser.attributes.name;
-    // do stuff with the user
-} else {
-    // show the signup or login page
-}
-	</script>
+
 	
 	
 <div class="main" style="align:center;margin-top:10;margin-left:17%">
@@ -131,6 +123,16 @@ document.getElementById("name").value=currentUser.attributes.name;
 		 <!-----start-copyright---->
    		
 				<!-----//end-copyright---->
+		
+			<script>
+	var currentUser = Parse.User.current();
+if (currentUser) {
+document.getElementById("name").value=currentUser.attributes.name;
+    // do stuff with the user
+} else {
+    // show the signup or login page
+}
+	</script>
 		
 </body>
 </html>
