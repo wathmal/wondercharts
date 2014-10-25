@@ -128,7 +128,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 	var currentUser = Parse.User.current();
 if (currentUser) {
 document.getElementById("name").value=currentUser.attributes.name;
-document.getElementById("surname").value=currentUser.get('surname');
+document.getElementById("surname").value=currentUser.get("surname");
 document.getElementById("email").value=currentUser.attributes.email;
     // do stuff with the user
 } else {
