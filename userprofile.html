@@ -85,7 +85,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		   </br>
 		   <input type="radio" name="posting" value="female" style="color:White;float:left;font-size:x-large;width:5%;" ><label style="color:White;float:left;font-size:medium;" id="gender_label" class="text" value="">Nickname</label></input>
 		        <div class="lable-2" style="width:107%">
-			 <input id="email" type="text" class="text" value="My nickname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'My nickname ';}">
+			 <input id="nickname" type="text" class="text" value="My nickname" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'My nickname ';}">
 			 </div>
 		   </div>	
 		  
@@ -97,8 +97,8 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 	<label style="color:White;float:left;font-size:x-large;margin-top:10%;" id="gender_label" class="text" value="">Change Password</label>	   
    <div style="margin-left:0;padding-left:0;border-left-width:0;margin-top:3%;" class="submit">
 		   <div class="lable-2" style="width:52%">
-			   <input id="email" type="text" class="text" value="New password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'New password ';}">
-			    <input id="email" type="text" class="text" value="Repeat new password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Repeat new password ';}">
+			   <input id="newpassword" type="text" class="text" value="New password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'New password ';}">
+			    <input id="confirmpassword" type="text" class="text" value="Repeat new password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Repeat new password ';}">
   <input style="width:52%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;margin-bottom:20%;" type="submit" onclick="submitfunction()" value="Change Password" >			
 			</div>
 			
@@ -128,6 +128,8 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 	var currentUser = Parse.User.current();
 if (currentUser) {
 document.getElementById("name").value=currentUser.attributes.name;
+document.getElementById("surname").value=currentUser.attributes.surname;
+document.getElementById("email").value=currentUser.attributes.email;
     // do stuff with the user
 } else {
     // show the signup or login page
