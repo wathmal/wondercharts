@@ -37,77 +37,18 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     </script>
-
-<script>
-function RegisterFacebook(){
-Parse.FacebookUtils.logIn("email", {
-  success: function(user) {
-    if (!user.existed()) {
 	
-		  alert("User signed up and logged in through Facebook!");
-	 
-    } else {
-		      alert("User logged in through Facebook!");
+	<script>
+	var currentUser = Parse.User.current();
+if (currentUser) {
+document.getElementById("name").value=currentUser.attributes.name;
+    // do stuff with the user
+} else {
+    // show the signup or login page
+}
+	</script>
 	
-    }
-	var myuser = Parse.User.current();
-	FB.api('/me?scope=email', function(me) {
-                myuser.set("email", me.email);
-              myuser.set("name", me.first_name);
-			  myuser.set("surname", me.last_name);
-			  myuser.set("locale", me.locale);
-			  myuser.set("agerange", me.age_range);
-			  myuser.set("gender", me.gender);
-			  
-			 myuser.save(null,{
-    success: function(myuser){  alert('saved');},
-    error: function(myuser,error3){ alert(error3);}
-    });
-				});
-				 location.reload();
-  },
-  error: function(user, error) {
-    alert("User cancelled the Facebook login or did not fully authorize.");
-  }
-});
-}
-</script>
-
-<script>
-function submitfunction(){
-
-var user = new Parse.User();
-var name = document.getElementById("name").value;
-var surname = document.getElementById("surname").value;
-var email = document.getElementById("email").value;
-var password = document.getElementById("password").value;
-user.set("username", email);
-user.set("password", password);
-user.set("email", email);
-user.set("name", name);
-user.set("surname", surname);
-
-
-
-  
-// other fields can be set just like with Parse.Object
-//user.set("phone", "650-555-0000");
-  
-user.signUp(null, {
-  success: function(user) {
-   window.location.href = "http://www.wondercharts.com";
-  },
-  error: function(user, error) {
-    // Show the error message somewhere and let the user try again.
-    alert("no error");
-  }
-});
-event.preventDefault(); 
-}
-
-
-</script>
-
+	
 <div class="main" style="align:center;margin-top:10;margin-left:17%">
 
 <div class="col_1_of_2 span_1_of_2" style="width:42%;margin-bottom:10%">	<label style="color:#07793D;font-weight:600;font-size:50;float:left;margin-top:21%;" class="text" value="" id="active_label">My Profile</div>
