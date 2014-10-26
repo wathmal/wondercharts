@@ -126,6 +126,11 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		<script>
 		
 		function changepasswordfunction(){
+		
+		var currentUser = Parse.User.current();
+		authData=currentUser.attributes.authData;
+		if (authData.substring(0,8)!="Facebook"){
+		
 		if (document.getElementById("newpassword").value != ""){
 		
 		Parse.User.requestPasswordReset(document.getElementById("newpassword").value, {
@@ -138,8 +143,12 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
   }
 });
 		
-		} 
+		}
+else {
+alert("You logged in using Facebook.  Please reset your password through Facebook.com");
+}
 		
+		}
 		event.preventDefault(); 
 		}
 		
