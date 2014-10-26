@@ -97,9 +97,9 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 	<label style="color:White;float:left;font-size:x-large;margin-top:10%;" id="gender_label" class="text" value="">Change Password</label>	   
    <div style="margin-left:0;padding-left:0;border-left-width:0;margin-top:3%;" class="submit">
 		   <div class="lable-2" style="width:52%">
-			   <input id="newpassword" type="text" class="text" value="New password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'New password ';}">
-			    <input id="confirmpassword" type="text" class="text" value="Repeat new password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Repeat new password ';}">
-  <input style="width:52%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;margin-bottom:20%;" type="submit" onclick="submitfunction()" value="Change Password" >			
+			   <input id="newpassword" type="text" class="text" value="New password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your email address ';}">
+			   <label style="color:White;float:left;font-size:small;margin-top:10%;" id="gender_label" class="text" value="">An email with a special 'reset password' link will be sent.  Please click this link to reset your password.</label>	   
+  <input style="width:52%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;margin-bottom:20%;" type="submit" onclick="changepasswordfunction()" value="Change Password" >			
 			</div>
 			
 		   
@@ -123,6 +123,26 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		 <!-----start-copyright---->
    		
 				<!-----//end-copyright---->
+		<script>
+		
+		function changepasswordfunction(){
+		if (document.getElementById("password").value){
+		
+		Parse.User.requestPasswordReset(document.getElementById("password").value, {
+  success: function() {
+    alert("Password reset email was sent successfully");
+  },
+  error: function(error) {
+    // Show the error message somewhere
+    alert("Error: " + error.code + " " + error.message);
+  }
+});
+		
+		} 
+		}
+		
+		</script>
+		
 		
 			<script>
 	var currentUser = Parse.User.current();
