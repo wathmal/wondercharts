@@ -128,8 +128,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		function changepasswordfunction(){
 		
 		var currentUser = Parse.User.current();
-		authData=currentUser.attributes.authData;
-		if (authData.substring(0,8)!="Facebook"){
+		if (currentUser.attributes.authData.facebook.id==""){
 		
 		if (document.getElementById("newpassword").value != ""){
 		
