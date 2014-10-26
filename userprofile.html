@@ -126,9 +126,9 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		<script>
 		
 		function changepasswordfunction(){
-		if (document.getElementById("password").value){
+		if (document.getElementById("confirmpassword").value != ""){
 		
-		Parse.User.requestPasswordReset(document.getElementById("password").value, {
+		Parse.User.requestPasswordReset(document.getElementById("confirmpassword").value, {
   success: function() {
     alert("Password reset email was sent successfully");
   },
