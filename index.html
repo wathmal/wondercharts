@@ -128,11 +128,7 @@ Parse.FacebookUtils.logIn("email", {
             }
          }
       </script>
-      <script>
-         function reload1(){
-         window.top.location.href("http://www.wondercharts.com/#!User_Profile/cnvm");
-         }
-      </script>
+   
       <script>
          function ChangePass(){
          document.getElementById("bd3").style.display="none";
@@ -195,10 +191,8 @@ Parse.FacebookUtils.logIn("email", {
       </div>
       </div>
       <div id="bd2" style="display:none">
-         <a aria-label="Log In" class="nav-login nav-link" href="#" onclick="reload1();" style="padding: 2 2 2 2;margin-right:2px;" onmouseover="this.style.backgroundColor='#ffffff';"  role="button">
-         <label style="cursor:pointer;" id="NameOfUser"></label>
-         </a>
-         <a aria-label="Log In" target="_self" class="nav-login nav-link" onClick="Logout();" href="#" style="padding: 2 2 2 2;margin-right:30px;" onmouseover="this.style.backgroundColor='#ffffff';" role="button">
+                  <label id="NameOfUser"></label>
+                <a aria-label="Log In" target="_self" class="nav-login nav-link" onClick="Logout();" href="#" style="padding: 2 2 2 2;margin-right:30px;" onmouseover="this.style.backgroundColor='#ffffff';" role="button">
          <label style="cursor:pointer" id="Logout"> (Logout) </label>
          </a>
       </div>
