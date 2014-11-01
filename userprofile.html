@@ -101,7 +101,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		  
 		      <div style="width:88%;margin-top:9%;">
 			  </br>
-		   <input type="checkbox" name="newslettersignup" id="newslettersignup" value="" style="margin-left:0;color:white;float:left;font-size:x-large;width:3%" ><label style="color:White;font-size:medium;width:150%" id="gender_label" class="text" value="">I would like to receive updates and notifications from WonderCharts</label></input>
+		   <input type="checkbox" onchange="change('newsletter',this);" name="newslettersignup" id="newslettersignup" value="" style="margin-left:0;color:white;float:left;font-size:x-large;width:3%" ><label style="color:White;font-size:medium;width:150%" id="gender_label" class="text" value="">I would like to receive updates and notifications from WonderCharts</label></input>
 		   <img style="margin-top:-3%;width:5%;margin-left:3%;display:none;" src="https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/verygood.png"></img>
 		   		   </div>
 		   
@@ -212,6 +212,38 @@ document.getElementById("newslettersignup").checked = true;
 		
 	</script>
 	
+	
+<script>
+function change(posting, element){
+
+var CurrentUser = Parse.User.current();
+
+
+switch (posting){
+case 'name':
+CurrentUser.set("name",element.value);
+break;
+case 'surname':
+CurrentUser.set("surname",element.value);
+break;
+case 'email':
+CurrentUser.set("email",element.value);
+break;
+case 'posting':
+CurrentUser.set("ShareWithFullName",element.value);
+break;
+case 'sex':
+CurrentUser.set("gender",element.value);
+break;
+case 'newsletter':
+CurrentUser.set("NewsletterSignedUp",element.value);
+break;
+
+CurrentUser.save;
+
+}
+}
+</script>
 	
 </body>
 </html>
