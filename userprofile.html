@@ -230,7 +230,11 @@ case 'email':
 CurrentUser.set("email",element.value);
 break;
 case 'posting':
-CurrentUser.set("ShareWithFullName",false);
+if (element.value=='false'){
+CurrentUser.set("ShareWithFullName",false);}
+else if (element.value=='true'){
+CurrentUser.set("ShareWithFullName",true);}
+}
 break;
 case 'sex':
 CurrentUser.set("gender",element.value);
