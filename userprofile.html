@@ -262,12 +262,14 @@ CurrentUser.save();
 </script>
 	
 <script>
+var CurrentUser = Parse.User.current();
+
 function photoupload(){
 var fileUploadControl = $("#profilePhotoFileUpload")[0];
 if (fileUploadControl.files.length > 0) {
   var file = fileUploadControl.files[0];
   
-  var name = "profilephoto";
+  var name = CurrentUser.attributes.username;
  
   var parseFile = new Parse.File(name, file);
 }
