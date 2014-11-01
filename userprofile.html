@@ -236,7 +236,8 @@ else if (element.value=='true'){
 CurrentUser.set("ShareWithFullName",true);}
 break;
 case 'nickname':
-CurrentUser.set("Nickname",element.value);
+if (element.value!='My nickname'){
+CurrentUser.set("Nickname",element.value);}
 break;
 case 'sex':
 CurrentUser.set("gender",element.value);
