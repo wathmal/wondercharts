@@ -273,19 +273,7 @@ if (fileUploadControl.files.length > 0) {
 }
 }
 
-function checkName(el) {
-  // get the file name and split it to separe the extension
-  var name = el.value;
-  var ar_name = name.split('.');
 
-  // for IE - separe dir paths (\) from name
-  var ar_nm = ar_name[0].split('\\');
-  for(var i=0; i<ar_nm.length; i++) var nm = ar_nm[i];
-
- 	  return ar_name[1];
-      break;
-    }
-  }
 </script>	
 	
 	
