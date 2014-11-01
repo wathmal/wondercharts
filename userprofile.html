@@ -243,7 +243,8 @@ case 'sex':
 CurrentUser.set("gender",element.value);
 break;
 case 'newsletter':
-CurrentUser.set("NewsletterSignedUp",element.value);
+if (element.checked == false){CurrentUser.set("NewsletterSignedUp",false);}
+else if (element.checked == true){CurrentUser.set("NewsletterSignedUp",true);}
 break;
 
 
