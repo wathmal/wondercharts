@@ -1,0 +1,158 @@
+
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link rel="stylesheet" media="screen and (min-device-width: 500px)" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/23c3568d1261b8acf695c7966e0cf823f996d284/loginpageWide.css" />
+<link rel="stylesheet" media="screen and (max-device-width: 500px)" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/fe7ddd02a9db01d766d25b25074120e635dd4c37/loginpageNarrow.css" />
+<!--webfonts-->
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+</head>
+<body>
+
+<script>
+Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
+</script>
+
+ <script>
+      window.fbAsyncInit = function() {
+       Parse.FacebookUtils.init({ // this line replaces FB.init({
+          appId      : '564283890385172',
+		  status     : true, // check Facebook Login status
+		  cookie     : true, // enable cookies to allow Parse to access the session
+          xfbml      : true,
+          version    : 'v2.1',
+		  oauth      : true
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "http://connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+<script>
+function RegisterFacebook(){
+Parse.FacebookUtils.logIn("email", {
+  success: function(user) {
+    if (!user.existed()) {
+	
+		  alert("User signed up and logged in through Facebook!");
+	 
+    } else {
+		      alert("User logged in through Facebook!");
+	
+    }
+	var myuser = Parse.User.current();
+	FB.api('/me?scope=email', function(me) {
+                myuser.set("email", me.email);
+              myuser.set("name", me.first_name);
+			  myuser.set("surname", me.last_name);
+			  myuser.set("locale", me.locale);
+			  myuser.set("agerange", me.age_range);
+			  myuser.set("gender", me.gender);
+			  
+			 myuser.save(null,{
+    success: function(myuser){  alert('saved');},
+    error: function(myuser,error3){ alert(error3);}
+    });
+				});
+				 location.reload();
+  },
+  error: function(user, error) {
+    alert("User cancelled the Facebook login or did not fully authorize.");
+  }
+});
+}
+</script>
+
+<script>
+function submitfunction(){
+
+var user = new Parse.User();
+var name = document.getElementById("name").value;
+var surname = document.getElementById("surname").value;
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+user.set("username", email);
+user.set("password", password);
+user.set("email", email);
+user.set("name", name);
+user.set("surname", surname);
+
+
+
+  
+// other fields can be set just like with Parse.Object
+//user.set("phone", "650-555-0000");
+  
+user.signUp(null, {
+  success: function(user) {
+   window.location.href = "http://www.wondercharts.com";
+  },
+  error: function(user, error) {
+    // Show the error message somewhere and let the user try again.
+    alert("no error");
+  }
+});
+event.preventDefault(); 
+}
+
+
+</script>
+
+<div class="main" style="align:center;margin-top:50;">
+	<div  style="margin: 0 0 0 0;width:100%;" class="test">
+		 <div style="margin-left:30%" class="col_1_of_f span_1_of_f"><a onclick="RegisterFacebook();" href="#">
+		    <ul class='facebook'>
+		    	<i class="fb"> </i>
+		    	<li>Connect with Facebook</li>
+		    	<div class='clear'> </div>
+		    </ul>
+		    </a>
+		 </div>	
+		 <div style="display:none;" class="col_1_of_f span_1_of_f"><a href="#">
+		    <ul class='twitter'>
+		      <i class="tw"> </i>
+		      <li>Connect with Twitter</li>
+		      <div class='clear'> </div>
+		    </ul>
+		    </a>
+		</div>
+		<div class="clear"> </div>	
+      </div>
+      <h2>Or Signup with</h2>
+		<form>
+		   <div class="lable" style="width:107%">
+		        <div class="col_1_of_2 span_1_of_2">	<input type="text" id="name" class="text" value="First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}" id="active"></div>
+                <div class="col_1_of_2 span_1_of_2"><input type="text" id="surname" class="text" value="Last Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Last Name';}"></div>
+                <div class="clear"> </div>
+		   </div>
+		   <div class="lable-2" style="width:107%">
+		        <input id="email" type="text" class="text" value="Email Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'your@email.com ';}">
+		        <input id="password" type="password" class="text" value="Password " onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password ';}">
+		   </div>
+		   <br></br>
+		   <br></br>
+		   <br>
+		   <h3>By creating an account, you agree to our <span style="alignment-adjust:middle;" class="term"><a href="http://www.wondercharts.com/#!Terms/cbz4">Terms & Conditions</a></span></h3>
+		   <div style="margin-left:0;padding-left:0;border-left-width:0;" class="submit">
+			  <input style="width:101.5%;float:left;padding-left:0;margin-left:0;border-left-width:0;" type="submit" onclick="submitfunction()" value="Create account" >
+		   </div>
+		   <div class="clear"> </div>
+		</form>
+		<!-----//end-main---->
+		</div>
+		 <!-----start-copyright---->
+   		
+				<!-----//end-copyright---->
+		
+</body>
+</html>
