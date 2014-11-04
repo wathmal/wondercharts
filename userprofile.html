@@ -21,7 +21,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 
  <script>
       window.fbAsyncInit = function() {
-       Parse.FacebookUtils.init({ // this line replaces FB.init({
+       Parse.FacebookUtils.init({
           appId      : '564283890385172',
 		  status     : true, // check Facebook Login status
 		  cookie     : true, // enable cookies to allow Parse to access the session
@@ -100,7 +100,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 				 <img id="verygoodpostingb" style="margin-top: -9%;width: 40;margin-left: 87%;display:block;float: left;" src="https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/verygoodblank.png">
 				<div class="lable-2" style="width:107%">
 				
-			 <input id="nickname" style="width:78%;" type="text" class="text" value="My nickname" onfocus="if (this.value == 'My nickname ' || this.value == 'My nickname') {this.value='';}" onblur="if (this.value == '') {this.value = 'My nickname';} change('nickname',this);">
+			
  
 			 <img id="verygoodnickname" style="margin-top: 5%; width: 8%; margin-left: 4%; display: none;" src="https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/verygood.png">
 			 <img id="verygoodnicknameb" style="margin-top: -8%;width: 13%;margin-left: 12%;display:block;" src="https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/verygoodblank.png">
@@ -276,7 +276,7 @@ break;
 }
 CurrentUser.save();
 }
-}
+
 </script>
 	
 <script>
