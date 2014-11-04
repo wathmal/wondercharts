@@ -262,7 +262,7 @@ case 'newsletter':
 if (element.checked == false){CurrentUser.set("NewsletterSignedUp",false);}
 else if (element.checked == true){CurrentUser.set("NewsletterSignedUp",true);}
 document.getElementById("verygoodnewsletter").style.display="inline";
-document.getElementById("verygoodnewsletterb").style.display="none";
+document.getElementById("verygoodnewsletter").style.z-index="100";
 break;
 }
 CurrentUser.save();
