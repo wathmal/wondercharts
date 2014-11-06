@@ -76,8 +76,8 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		   <div class="lable-2" style="width:107%">
 		   <div class="col_1_of_2 span_1_of_2" style="width:18%"><label style="color:White;float:left;font-size:x-large;margin-top:19%;" id="email_label" class="text" value="">Email</label></div>
 		   <input id="email" onblur="change('email',this);" type="text" class="text" value="" style="width:75%">
-		   <img id="verygoodemail" style="margin-top: 3%; width: 4%; margin-left: 2.5%; display:block;position:relative;" src="https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/verygood.png">
-		   <img id="verygoodemailb" style="margin-top: -4%;width: 7%;margin-left: 3%;display:block;" src="https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/verygoodblank.png">
+		   <img id="verygoodemail" style="margin-top: 3%; width: 50; height:50; margin-left: 2.5%; display:block;" src="//:0">
+		   
 		   
 		   </div>
 		   
@@ -234,8 +234,8 @@ document.getElementById("verygoodsurname").style.zindex=100;
 break;
 case 'email':
 CurrentUser.set("email",element.value);
-document.getElementById("verygoodemail").style.zindex=100;
-document.getElementById("verygoodemailb").style.zindex=1;
+document.getElementById("verygoodemail").src="https://raw.githubusercontent.com/wondercharts/wondercharts/gh-pages/verygood.png";
+
 break;
 case 'posting':
 if (element.value=='false'){
