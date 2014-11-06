@@ -262,10 +262,10 @@ break;
 }
 
 CurrentUser.save(null, {
-  success: function() {
+  success: function(CurrentUser) {
     // Execute any logic that should take place after the object is saved.
      },
-  error: function(error) {
+  error: function(CurrentUser,error) {
     // Execute any logic that should take place if the save fails.
     // error is a Parse.Error with an error code and message.
     alert(error.message);
