@@ -56,7 +56,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 		<img src="https://scontent-a-mxp.xx.fbcdn.net/hphotos-xap1/v/t1.0-9/1779262_10203003926477066_2139697282_n.jpg?oh=c4d4911585c094eec533e5f83d0d7579&amp;oe=54B2A9B6" alt="Profile picture" style="float:left;margin-right:5%;width:14%;margin-top:-3.5%">
 		   <div style="margin-left:0;padding-left:0;border-left-width:0;margin-top:3%;" class="submit">
 		   <div class="lable-2" style="width:52%">
-			<input type="file" id="profilePhotoFileUpload" accept="image/*" style="width:22%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;font-size:small;" onclick="photoupload()" value="">			
+			<input type="file" id="profilePhotoFileUpload" accept="image/*" style="width:22%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;font-size:small;" onchange="photoupload()" value="">			
 			
 			
 			</div>
@@ -301,6 +301,7 @@ if (fileUploadControl.files.length > 0) {
   var name = CurrentUser.attributes.username + ".jpg";
  
   var parseFile = new Parse.File(name, file);
+  parseFile.save();
 }
 }
 </script>	
