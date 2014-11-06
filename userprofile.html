@@ -226,44 +226,58 @@ var CurrentUser = Parse.User.current();
 switch (posting){
 case 'first':
 CurrentUser.set("name",element.value);
-alert("Name has been modified");
 break;
 case 'surname':
 CurrentUser.set("surname",element.value);
-alert("Surname has been modified");
 break;
 case 'email':
 CurrentUser.set("email",element.value);
-alert("Email has been modified");
-
 break;
 case 'posting':
 if (element.value=='false'){
 CurrentUser.set("ShareWithFullName",false);}
 else if (element.value=='true'){
 CurrentUser.set("ShareWithFullName",true);}
-alert("Setting has been modified");
 break;
 case 'nickname':
 if (element.value != 'My nickname' && element.value != 'My nickname '){
 CurrentUser.set("Nickname",element.value);}
-alert("Nickname has been modified");
-
 break;
 case 'sex':
 CurrentUser.set("gender",element.value);
-alert("Gender has been modified");
 break;
 case 'newsletter':
 if (element.checked == false){CurrentUser.set("NewsletterSignedUp",false);}
 else if (element.checked == true){CurrentUser.set("NewsletterSignedUp",true);}
-alert("Newsletter option has been modified");
 break;
 }
 
 CurrentUser.save(null, {
   success: function(CurrentUser) {
     // Execute any logic that should take place after the object is saved.
+switch (posting){
+case 'first':
+alert("Name has been modified");
+break;
+case 'surname':
+alert("Surname has been modified");
+break;
+case 'email':
+alert("Email has been modified");
+break;
+case 'posting':
+alert("Setting has been modified");
+break;
+case 'nickname':
+alert("Nickname has been modified");
+break;
+case 'sex':
+alert("Gender has been modified");
+break;
+case 'newsletter':
+alert("Newsletter option has been modified");
+break;
+}
      },
   error: function(CurrentUser,error) {
     // Execute any logic that should take place if the save fails.
