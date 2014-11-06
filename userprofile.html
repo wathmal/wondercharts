@@ -226,37 +226,37 @@ var CurrentUser = Parse.User.current();
 switch (posting){
 case 'first':
 CurrentUser.set("name",element.value);
-document.getElementById("verygoodname").style.zindex="100";
+document.getElementById("verygoodname").style.zindex=100;
 break;
 case 'surname':
 CurrentUser.set("surname",element.value);
-document.getElementById("verygoodsurname").style.zindex="100";
+document.getElementById("verygoodsurname").style.zindex=100;
 break;
 case 'email':
 CurrentUser.set("email",element.value);
-document.getElementById("verygoodemail").style.zindex="100";
+document.getElementById("verygoodemail").style.zindex=100;
 break;
 case 'posting':
 if (element.value=='false'){
 CurrentUser.set("ShareWithFullName",false);}
 else if (element.value=='true'){
 CurrentUser.set("ShareWithFullName",true);}
-document.getElementById("verygoodposting").style.zindex="100";
+document.getElementById("verygoodposting").style.zindex=100;
 break;
 case 'nickname':
 if (element.value != 'My nickname' && element.value != 'My nickname '){
 CurrentUser.set("Nickname",element.value);}
 
-document.getElementById("verygoodnickname").style.zindex="100";
+document.getElementById("verygoodnickname").style.zindex=100;
 break;
 case 'sex':
 CurrentUser.set("gender",element.value);
-document.getElementById("verygoodsex").style.zindex="100";
+document.getElementById("verygoodsex").style.zindex=100;
 break;
 case 'newsletter':
 if (element.checked == false){CurrentUser.set("NewsletterSignedUp",false);}
 else if (element.checked == true){CurrentUser.set("NewsletterSignedUp",true);}
-document.getElementById("verygoodnewsletter").style.zindex="100";
+document.getElementById("verygoodnewsletter").style.zindex=100;
 break;
 }
 CurrentUser.save();
