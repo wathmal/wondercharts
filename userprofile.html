@@ -302,7 +302,9 @@ if (fileUploadControl.files.length > 0) {
  
   var parseFile = new Parse.File(name, file);
    parseFile.save().then(function() {
-    alert("Profile image has been saved");
+    CurrentUser.set("ProfileImage",parseFile.url());
+	alert("Profile image has been saved");
+	
   }, function(error) {
     alert(error);
   });
