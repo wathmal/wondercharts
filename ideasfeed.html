@@ -1,0 +1,48 @@
+<html style="overflow:hidden">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script id="facebook-jssdk" src="http://connect.facebook.net/en_US/sdk.js"></script><script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
+		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+		<link rel="stylesheet" media="screen and (min-device-width: 500px)" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/23c3568d1261b8acf695c7966e0cf823f996d284/loginpageWide.css">
+		<link rel="stylesheet" media="screen and (max-device-width: 500px)" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/fe7ddd02a9db01d766d25b25074120e635dd4c37/loginpageNarrow.css">
+		<link href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700" rel="stylesheet" type="text/css">
+
+	</head>
+
+	<body>
+
+		<script>
+			Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
+		</script>
+
+		<script>
+			window.fbAsyncInit = function() {
+				Parse.FacebookUtils.init({ // this line replaces FB.init({
+				appId      : '564283890385172',
+				status     : true, // check Facebook Login status
+				cookie     : true, // enable cookies to allow Parse to access the session
+				xfbml      : true,
+				version    : 'v2.1',
+				oauth      : true
+				});
+			};
+			(function(d, s, id){
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) {return;}
+				js = d.createElement(s); js.id = id;
+				js.src = "http://connect.facebook.net/en_US/sdk.js";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+		</script>
+	
+
+		<div class="main" style="align:center;margin-top:10;margin-left:17%">
+
+	
+		</div>
+	</body>
+</html>
