@@ -50,10 +50,63 @@
 			
 			<div>
 				<script>
+					var IdeaList = [,];
+					var IdeaListCounter = 0;
+					var myuser = Parse.User.current();
+					var Followers = new Parse.Query("Followers");
+					Followers.equalTo("Source_User", myuser.attributes.objectId);
+ 
+					Followers.find({
+						success: function(results) {
+							for (var i = 0; i < results.length; i++) { 
+								var object = results[i];
+								
+								var Ideas = new Parse.Query("Ideas");
+								Ideas.equalto("objectId_User", object.get('Destination_User'));
+								
+								Ideas.find({
+									success: function(results2) {
+										for (var j = 0; j < results2.length; j++) { 
+											var object2 = results2[i];
+											IdeaListCounter++;
+											IdeaList[IdeaListCounter,0] = object2.get('objectId_User');  //source user
+											IdeaList[IdeaListCounter,1] = object2.get('IdeaText'); //text
+											IdeaList[IdeaListCounter,2] = object2.get('IdeaImage'); //image
+											IdeaList[IdeaListCounter,3] = object2.get('IdeaLikes'); //likes
+											IdeaList[IdeaListCounter,4] = object2.get('IdeaReport'); //reports
+										}
+									},
+									error: function(error) {
+										alert("Error: " + error.code + " " + error.message);
+									}
+								});
+								
+							}
+						},
+						error: function(error) {
+							alert("Error: " + error.code + " " + error.message);
+						}
+					});
+					
 					document.write(
-					"<h1 style='color:white'>"
-					+"Hello World!"
-					+"</h1>");
+						"<div>
+							+"<h1>"
+								+text
+							+"</h1>"
+							
+							+"<img>"
+								+image
+							+"</img>"
+							
+							+"<a>"
+								+like
+							+"</a>"
+							
+							+"<a>"
+								+report
+							+"</a>"
+						+"</div>"
+					);
 				</script>
 			</div>
 	
