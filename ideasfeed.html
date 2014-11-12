@@ -87,26 +87,31 @@
 							alert("Error: " + error.code + " " + error.message);
 						}
 					});
-					
-					document.write(
-						"<div>
-							+"<h1>"
-								+text
-							+"</h1>"
+					for (var bb = 0; bb < IdeaListCounter; bb++){
+						document.write(
+							"<div>
+								+"<h1>"
+									+IdeaList[bb,0];
+								+"</h1>"
+								
+								+"<h1>"
+									+IdeaList[bb,1];
+								+"</h1>"
 							
-							+"<img>"
-								+image
-							+"</img>"
+								+"<img>"
+									+IdeaList[bb,2];
+								+"</img>"
 							
-							+"<a>"
-								+like
-							+"</a>"
+								+"<a>"
+									+IdeaList[bb,3];
+								+"</a>"
 							
-							+"<a>"
-								+report
-							+"</a>"
-						+"</div>"
-					);
+								+"<a>"
+									+IdeaList[bb,4];
+								+"</a>"
+							+"</div>"
+						);
+					}
 				</script>
 			</div>
 	
