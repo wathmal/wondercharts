@@ -84,6 +84,30 @@
 											IdeaList[IdeaListCounter,2] = object2.get('IdeaImage'); //image
 											IdeaList[IdeaListCounter,3] = object2.get('IdeaLikes'); //likes
 											IdeaList[IdeaListCounter,4] = object2.get('IdeaReport'); //reports
+											
+											document.write(
+												"<div>"
+													+"<h1>"
+														+IdeaList[bb,0]
+													+"</h1>"
+								
+													+"<h1>"
+														+IdeaList[bb,1]
+													+"</h1>"
+							
+													+"<img>"
+														+IdeaList[bb,2]
+													+"</img>"
+							
+													+"<a>"
+														+IdeaList[bb,3]
+													+"</a>"
+							
+													+"<a>"
+														+IdeaList[bb,4]
+													+"</a>"
+												+"</div>"
+											);
 										}
 									},
 									error: function(error) {
@@ -97,31 +121,6 @@
 							alert("Error: " + error.code + " " + error.message);
 						}
 					});
-					for (var bb = 0; bb < IdeaListCounter; bb++){
-						document.write(
-							"<div>"
-								+"<h1>"
-									+IdeaList[bb,0]
-								+"</h1>"
-								
-								+"<h1>"
-									+IdeaList[bb,1]
-								+"</h1>"
-							
-								+"<img>"
-									+IdeaList[bb,2]
-								+"</img>"
-							
-								+"<a>"
-									+IdeaList[bb,3]
-								+"</a>"
-							
-								+"<a>"
-									+IdeaList[bb,4]
-								+"</a>"
-							+"</div>"
-						);
-					}
 				</script>
 			</div>
 	
