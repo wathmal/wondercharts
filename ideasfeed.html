@@ -62,7 +62,7 @@
 								var object = results[i];
 								
 								var Ideas = new Parse.Query("Ideas");
-								Ideas.equalto("objectId_User", {__type: "Pointer",className: "_User",objectId: object.get('Destination_User').id});
+								Ideas.equalTo("objectId_User", {__type: "Pointer",className: "_User",objectId: object.get('Destination_User').id});
 								
 								Ideas.find({
 									success: function(results2) {
