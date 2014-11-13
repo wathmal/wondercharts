@@ -54,7 +54,7 @@
 					var IdeaListCounter = 0;
 					var myuser = Parse.User.current();
 					var Followers = new Parse.Query("Followers");
-					Followers.equalTo("Source_User", myuser.attributes.objectId);
+					Followers.equalTo("Source_User", myuser.id);
  
 					Followers.find({
 						success: function(results) {
