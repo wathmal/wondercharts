@@ -153,32 +153,45 @@
 											IdeaList[IdeaListCounter,4] = object2.get('IdeaReport'); //reports
 											
 											var postid = object2.id;
-											document.write(
-												"<div>"
-													+"<h1>"
-														+IdeaList[IdeaListCounter,0]
-													+"</h1>"
+											document.body.appendChild(document.createElement('div'));
+											
+												var h = document.createElement("H1");                // Create a <h1> element
+												var t = document.createTextNode(IdeaList[IdeaListCounter,0]);     // Create a text node
+												h.appendChild(t);  
+														
+												var i = document.createElement("H1");                // Create a <h1> element
+												var k = document.createTextNode(IdeaList[IdeaListCounter,1]);     // Create a text node
+												i.appendChild(k); 	
 								
-													+"<h1>"
-														+IdeaList[IdeaListCounter,1]
-													+"</h1>"
+												
 							
-													+"<img src='"
-														+IdeaList[IdeaListCounter,2]
-													+"'></img>"
+												var img = document.createElement("img");
+												img.src = IdeaList[IdeaListCounter,2];
+												document.body.appendChild(img);
+													
+												document.body.appendChild(document.createElement("br"));	
 							
-													+"</br><a style='cursor:pointer;' onclick=\"Like('"
-													+postid 
-													+"')\">Like this idea ("
-														+IdeaList[IdeaListCounter,3]
-													+" Likes)</a>"
-							
-													+"</br><a style='cursor:pointer' onclick='Report('"
-													+postid
-													+"')'>Report this idea"
-													+"</a>"
-												+"</div>"
-											);
+												var a = document.createElement('a');
+												var linkText = document.createTextNode("Like this idea (" +IdeaList[IdeaListCounter,3] +" Likes)");
+												a.appendChild(linkText);
+												a.title = "Like this idea";
+												a.href = "Like('" +postid +"')";
+												a.style = "cursor:pointer;";
+												document.body.appendChild(a);
+												
+												document.body.appendChild(document.createElement("br"));	
+												
+												var aa = document.createElement('a');
+												var linkText2 = document.createTextNode("Report this idea");
+												aa.appendChild(linkText2);
+												aa.title = "Report this idea";
+												aa.href = "Report('" +postid +"')";
+												aa.style = "cursor:pointer;";
+												document.body.appendChild(aa);
+												
+													
+											document.body.appendChild(document.createElement('div'));
+											
 										}
 									},
 									error: function(error) {
