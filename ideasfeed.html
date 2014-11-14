@@ -175,7 +175,7 @@
 												var linkText = document.createTextNode("Like this idea (" +IdeaList[IdeaListCounter,3] +" Likes)");
 												a.appendChild(linkText);
 												a.title = "Like this idea";
-												a.href = "Like('" +postid +"')";
+												a.onclick = "Like('" +postid +"')";
 												a.style = "cursor:pointer;";
 												document.body.appendChild(a);
 												
@@ -185,7 +185,7 @@
 												var linkText2 = document.createTextNode("Report this idea");
 												aa.appendChild(linkText2);
 												aa.title = "Report this idea";
-												aa.href = "Report('" +postid +"')";
+												aa.onclick = "Report('" +postid +"')";
 												aa.style = "cursor:pointer;";
 												document.body.appendChild(aa);
 												
