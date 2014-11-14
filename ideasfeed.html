@@ -43,11 +43,11 @@
 			function Like(postid){
 			
 			var myuser = Parse.User.current();
-			var Likes = new Parse.Query("Likes");
+			ParseQuery Likes = new ParseQuery("Likes");
 			Likes.whereEqualTo("Liked_Idea", postid);
 			Likes.whereEqualTo("Source_User",myuser.id);
  
-			mainQuery.count({
+			Likes.count({
 				success: function(count) {
 					if (count>0){
 						alert("You have already liked this idea")
