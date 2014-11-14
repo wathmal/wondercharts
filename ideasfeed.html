@@ -40,11 +40,11 @@
 		</script>
 		
 		<script>
-			function Like(postid){
+			function Like(postid2){
 			
 			var myuser = Parse.User.current();
 			ParseQuery Likes = new ParseQuery("Likes");
-			Likes.whereEqualTo("Liked_Idea", postid);
+			Likes.whereEqualTo("Liked_Idea", postid2);
 			Likes.whereEqualTo("Source_User",myuser.id);
  
 			Likes.count({
@@ -55,7 +55,7 @@
 					else{
 						var SaveLike = Parse.Object.extend("Likes");
  
-						SaveLike.set("Liked_Idea", postid);
+						SaveLike.set("Liked_Idea", postid2);
 						SaveLike.set("Source_User",myuser.id);
  
 						SaveLike.save(null, {
@@ -67,12 +67,12 @@
 						});
 						
 						var GetIdea = new Parse.Query("Ideas");
-						GetIdea.equalTo("objectId",postid);
+						GetIdea.equalTo("objectId",postid2);
  
 						GetIdea.find({
 							success: function(results) {
 								var SaveLike2 = results[0];
-								oldnolikes = SaveLike2.get('IdeaLikes');
+								var oldnolikes = SaveLike2.get('IdeaLikes');
 								SaveLike2.set("IdeaLikes", oldnolikes++);
 								SaveLike2.save(null, {
 									success: function(result) {
