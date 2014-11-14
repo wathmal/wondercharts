@@ -44,13 +44,9 @@
 			
 			var myuser = Parse.User.current();
 			var Likes = new Parse.Query("Likes");
-			Likes.equalTo("Liked_Idea", postid);
+			Likes.whereEqualTo("Liked_Idea", postid);
+			Likes.whereEqualTo("Source_User",myuser.id);
  
-			var Likes2 = new Parse.Query("Likes");
-			Likes2.equalTo("Source_User",myuser.id);
- 
-			var mainQuery = Parse.Query.and(Likes,Likes2);
-
 			mainQuery.count({
 				success: function(count) {
 					if (count>0){
