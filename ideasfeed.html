@@ -43,7 +43,7 @@
 			function Like(postid2){
 			
 			var myuser = Parse.User.current();
-			ParseQuery Likes = new ParseQuery("Likes");
+			var Likes = new ParseQuery("Likes");
 			Likes.whereEqualTo("Liked_Idea", postid2);
 			Likes.whereEqualTo("Source_User",myuser.id);
  
