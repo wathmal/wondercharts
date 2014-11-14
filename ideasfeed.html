@@ -85,6 +85,7 @@
 											IdeaList[IdeaListCounter,3] = object2.get('IdeaLikes'); //likes
 											IdeaList[IdeaListCounter,4] = object2.get('IdeaReport'); //reports
 											
+											var postid = object2.id;
 											document.write(
 												"<div>"
 													+"<h1>"
@@ -99,12 +100,15 @@
 														+IdeaList[IdeaListCounter,2]
 													+"'></img>"
 							
-													+"</br><a style='cursor:pointer;' onclick='Like(postid);'>Like this idea ("
+													+"</br><a style='cursor:pointer;' onclick='Like("
+													+postid
+													+");'>Like this idea ("
 														+IdeaList[IdeaListCounter,3]
 													+" Likes)</a>"
 							
-													+"</br><a onclick='Report(postid);'>"
-														+IdeaList[IdeaListCounter,4]
+													+"</br><a style='cursor:pointer' onclick='Report("
+													+postid
+													+");'>Report this idea"
 													+"</a>"
 												+"</div>"
 											);
@@ -125,5 +129,85 @@
 			</div>
 	
 		</div>
+		
+		<script>
+			function Like(postid){
+			
+			var myuser = Parse.User.current();
+			var Likes = new Parse.Query("Likes");
+			Likes.equalTo("Liked_Idea", postid);
+ 
+			var Likes2 = new Parse.Query("Likes");
+			Likes2.equalTo("Source_User",myuser.id);
+ 
+			var mainQuery = Parse.Query.and(Likes,Likes2);
+
+			mainQuery.count({
+				success: function(count) {
+					if (count>0){
+						alert("You have already liked this idea")
+					}
+					else{
+						var SaveLike = Parse.Object.extend("Likes");
+ 
+						SaveLike.set("Liked_Idea", postid);
+						SaveLike.set("Source_User",myuser.id);
+ 
+						SaveLike.save(null, {
+							success: function(result) {
+							}
+							error: function(error) {
+								alert("Error while saving 'Like'");
+							}
+						});
+						
+						var GetIdea = new Parse.Query("Ideas");
+						GetIdea.equalTo("objectId",postid);
+ 
+						GetIdea.find({
+							success: function(results) {
+								var SaveLike2 = results[0];
+								oldnolikes = SaveLike2.get('Likes');
+								SaveLike2.set("Likes", oldnolikes++);
+								SaveLike2.save(null, {
+									success: function(result) {
+									}	
+									error: function(error) {
+										alert("Error while saving 'Like'");
+									}
+								});
+							}
+							error: function(error){
+								alert("Error while saving Like: " + error);
+							}
+							
+						});
+						
+						
+					}
+				},
+			
+				error: function(error) {
+			
+				}
+			});
+			
+			
+			
+				var myuser = Parse.User.current();
+				var Likes = new Parse.Query("Likes");
+				Likes.equalTo("objectId_User", {__type: "Pointer",className: "_User",objectId: object.get('Destination_User').id});
+								
+				Likes.find({
+					success: function(results) {
+					},
+					
+					error: function(error) {
+						alert("Error: " + error.code + " " + error.message);
+					}
+				});
+			}
+		</script>
+		
 	</body>
 </html>
