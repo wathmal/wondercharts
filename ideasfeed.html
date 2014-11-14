@@ -19,9 +19,9 @@
 			Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
 		</script>
 
-		<script>
+		x<script>
 			window.fbAsyncInit = function() {
-				Parse.FacebookUtils.init({ // this line replaces FB.init({
+				Parse.FacebookUtils.init({ // this line replaces FB.init(
 				appId      : '564283890385172',
 				status     : true, // check Facebook Login status
 				cookie     : true, // enable cookies to allow Parse to access the session
@@ -194,20 +194,7 @@
 			
 			
 			
-				var myuser = Parse.User.current();
-				var Likes = new Parse.Query("Likes");
-				Likes.equalTo("objectId_User", {__type: "Pointer",className: "_User",objectId: object.get('Destination_User').id});
-								
-				Likes.find({
-					success: function(results) {
-					},
-					
-					error: function(error) {
-						alert("Error: " + error.code + " " + error.message);
-					}
-				});
-			}
-			}
+		}
 		</script>
 		
 	</body>
