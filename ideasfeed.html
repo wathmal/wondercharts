@@ -38,8 +38,75 @@
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
 		</script>
-	
+		
+		<script>
+			function Like(postid){
+			
+			var myuser = Parse.User.current();
+			var Likes = new Parse.Query("Likes");
+			Likes.equalTo("Liked_Idea", postid);
+ 
+			var Likes2 = new Parse.Query("Likes");
+			Likes2.equalTo("Source_User",myuser.id);
+ 
+			var mainQuery = Parse.Query.and(Likes,Likes2);
 
+			mainQuery.count({
+				success: function(count) {
+					if (count>0){
+						alert("You have already liked this idea")
+					}
+					else{
+						var SaveLike = Parse.Object.extend("Likes");
+ 
+						SaveLike.set("Liked_Idea", postid);
+						SaveLike.set("Source_User",myuser.id);
+ 
+						SaveLike.save(null, {
+							success: function(result) {
+							},
+							error: function(error) {
+								alert("Error while saving 'Like'");
+							}
+						});
+						
+						var GetIdea = new Parse.Query("Ideas");
+						GetIdea.equalTo("objectId",postid);
+ 
+						GetIdea.find({
+							success: function(results) {
+								var SaveLike2 = results[0];
+								oldnolikes = SaveLike2.get('Likes');
+								SaveLike2.set("Likes", oldnolikes++);
+								SaveLike2.save(null, {
+									success: function(result) {
+									},	
+									error: function(error) {
+										alert("Error while saving 'Like'");
+									}
+								});
+							},
+							error: function(error){
+								alert("Error while saving Like: " + error);
+							}
+							
+						});
+						
+						
+					}
+				},
+			
+				error: function(error) {
+			
+				}
+			});
+			
+			
+			
+		}
+		</script>
+		
+	
 		<div class="main" style="align:center;margin-top:10;margin-left:17%">
 	
 			<div class="col_1_of_2 span_1_of_2" style="width:42%;margin-bottom:10%">	
@@ -129,73 +196,6 @@
 			</div>
 	
 		</div>
-		
-		<script>
-			function Like(postid){
-			
-			var myuser = Parse.User.current();
-			var Likes = new Parse.Query("Likes");
-			Likes.equalTo("Liked_Idea", postid);
- 
-			var Likes2 = new Parse.Query("Likes");
-			Likes2.equalTo("Source_User",myuser.id);
- 
-			var mainQuery = Parse.Query.and(Likes,Likes2);
-
-			mainQuery.count({
-				success: function(count) {
-					if (count>0){
-						alert("You have already liked this idea")
-					}
-					else{
-						var SaveLike = Parse.Object.extend("Likes");
- 
-						SaveLike.set("Liked_Idea", postid);
-						SaveLike.set("Source_User",myuser.id);
- 
-						SaveLike.save(null, {
-							success: function(result) {
-							},
-							error: function(error) {
-								alert("Error while saving 'Like'");
-							}
-						});
-						
-						var GetIdea = new Parse.Query("Ideas");
-						GetIdea.equalTo("objectId",postid);
- 
-						GetIdea.find({
-							success: function(results) {
-								var SaveLike2 = results[0];
-								oldnolikes = SaveLike2.get('Likes');
-								SaveLike2.set("Likes", oldnolikes++);
-								SaveLike2.save(null, {
-									success: function(result) {
-									},	
-									error: function(error) {
-										alert("Error while saving 'Like'");
-									}
-								});
-							},
-							error: function(error){
-								alert("Error while saving Like: " + error);
-							}
-							
-						});
-						
-						
-					}
-				},
-			
-				error: function(error) {
-			
-				}
-			});
-			
-			
-			
-		}
-		</script>
 		
 	</body>
 </html>
