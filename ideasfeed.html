@@ -175,7 +175,7 @@
 												var linkText = document.createTextNode("Like this idea (" +IdeaList[IdeaListCounter,3] +" Likes)");
 												a.appendChild(linkText);
 												a.title = "Like this idea";
-												a.addEventListeneronclick("click",Like(postid));
+												a.addEventListener("click",Like(postid));
 												a.style = "cursor:pointer;";
 												a.href = "#";
 												document.body.appendChild(a);
