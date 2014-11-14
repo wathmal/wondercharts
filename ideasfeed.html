@@ -76,8 +76,8 @@
 						GetIdea.find({
 							success: function(results) {
 								var SaveLike2 = results[0];
-								oldnolikes = SaveLike2.get('Likes');
-								SaveLike2.set("Likes", oldnolikes++);
+								oldnolikes = SaveLike2.get('IdeaLikes');
+								SaveLike2.set("IdeaLikes", oldnolikes++);
 								SaveLike2.save(null, {
 									success: function(result) {
 									},	
@@ -87,7 +87,7 @@
 								});
 							},
 							error: function(error){
-								alert("Error while saving Like: " + error);
+								alert("Error while saving 'Like': " + error);
 							}
 							
 						});
