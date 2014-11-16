@@ -77,7 +77,7 @@
 						var GetIdea = new Parse.Query("Ideas");
 						GetIdea.equalTo("objectId",postid2);
  
-						GetIdea.find({
+						GetIdea.first({
 							success: function(results) {
 								var SaveLike2 = results[0];
 								var oldnolikes = SaveLike2.get('IdeaLikes');
