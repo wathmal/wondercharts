@@ -56,11 +56,13 @@
 						var SaveLike = Parse.Object.extend("Likes");
 						var savelike = new SaveLike();
 						
-						var likedidea = new Parse.Object.extend("Ideas");
+						var LikedIdea = new Parse.Object.extend("Ideas");
+						var likedidea = new LikedIdea();
 						likedidea.id = postid2;
 						savelike.set("Liked_Idea", likedidea);
 						
-						var sourceuser = new Parse.Object.extend("User");
+						var SourceUser = new Parse.Object.extend("User");
+						var sourceuser = new SourceUser();
 						sourceuser.id = myuser.id;
 						savelike.set("Source_User", sourceuser);
  
