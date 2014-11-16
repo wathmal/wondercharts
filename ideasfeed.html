@@ -81,7 +81,8 @@
 							success: function(results) {
 								var SaveLike2 = results;
 								var oldnolikes = SaveLike2.get('IdeaLikes');
-								SaveLike2.set("IdeaLikes", oldnolikes++);
+								var newnolikes = oldnolikes + 1;
+								SaveLike2.set("IdeaLikes", newnolikes);
 								SaveLike2.save(null, {
 									success: function(result) {
 									},	
