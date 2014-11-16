@@ -55,7 +55,7 @@
 					else{
 						var SaveLike = Parse.Object.extend("Likes");
  
-						SaveLike.set("Liked_Idea", {__type: "Pointer",className: "_Likes",objectId: postid2});
+						SaveLike.set("Liked_Idea", {__type: "Pointer",className: "_Ideas",objectId: postid2});
 						SaveLike.set("Source_User",{__type: "Pointer",className: "_User",objectId: myuser.id});
  
 						SaveLike.save(null, {
