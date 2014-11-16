@@ -79,7 +79,7 @@
  
 						GetIdea.first({
 							success: function(results) {
-								var SaveLike2 = results[0];
+								var SaveLike2 = results;
 								var oldnolikes = SaveLike2.get('IdeaLikes');
 								SaveLike2.set("IdeaLikes", oldnolikes++);
 								SaveLike2.save(null, {
