@@ -153,7 +153,7 @@
 											var object2 = results2[j];
 											IdeaListCounter++;
 											
-											ParseUser ideacreator = object2.getUser("objectId_User");
+											var ideacreator = object2.getUser("objectId_User");
 											
 											IdeaList[IdeaListCounter,0] = ideacreator.id; //sourceuser
 											IdeaList[IdeaListCounter,1] = object2.get('IdeaText'); //text
