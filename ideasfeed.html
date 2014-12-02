@@ -121,7 +121,7 @@
 				</label>
 			</div>
 			
-			<div style="width:100%;margin-top:10%">
+			<div>
 				<script>
 					var iMax = 20;
 					var jMax = 10;
@@ -159,7 +159,9 @@
 											IdeaList[IdeaListCounter,4] = object2.get('IdeaReport'); //reports
 											
 											var postid = object2.id;
-											document.body.appendChild(document.createElement('div'));
+											var div = document.createElement('div');
+											div.style = "width=100%;margin-top=10%;"
+											document.body.appendChild(div);
 											
 												var h = document.createElement("H1");                // Create a <h1> element
 												var t = document.createTextNode(IdeaList[IdeaListCounter,0]);     // Create a text node
