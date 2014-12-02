@@ -158,8 +158,12 @@
 											ideasourcename.find({
 												success: function(results3){
 													IdeaList[IdeaListCounter,0] = results3[0].get('name');  //source user
+												},
+												error: function(error) {
+													alert("Error: " + error.code + " " + error.message);
 												}
 											});
+											
 											
 											IdeaList[IdeaListCounter,1] = object2.get('IdeaText'); //text
 											IdeaList[IdeaListCounter,2] = object2.get('IdeaImage'); //image
