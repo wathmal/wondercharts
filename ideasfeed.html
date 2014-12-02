@@ -162,11 +162,12 @@
 											var div = document.createElement('div');
 											div.style.width="100%";
 											div.style.marginTop="10%";
-											document.body.appendChild(div);
+										
 											
 												var h = document.createElement("H1");                // Create a <h1> element
 												var t = document.createTextNode(IdeaList[IdeaListCounter,0]);     // Create a text node
 												h.appendChild(t);  
+												div.appendChild(h);
 														
 												var i = document.createElement("H1");                // Create a <h1> element
 												var k = document.createTextNode(IdeaList[IdeaListCounter,1]);     // Create a text node
@@ -201,8 +202,8 @@
 												aa.style = "cursor:pointer;";
 												document.body.appendChild(aa);
 												
-													
-											document.body.appendChild(document.createElement('div'));
+											document.body.appendChild(div);
+											
 											
 										}
 									},
