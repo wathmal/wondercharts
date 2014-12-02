@@ -152,7 +152,14 @@
 										for (var j = 0; j < results2.length; j++) { 
 											var object2 = results2[j];
 											IdeaListCounter++;
-											IdeaList[IdeaListCounter,0] = object2.get('objectId_User').id;  //source user
+											
+											var ideasourcename = new Parse.Query("User");
+											ideasourcename.equalTo("objectId_User", {__type: "Pointer",className: "_User",objectId: object.get('objectId_User').name});
+											ideasourcename.find({
+												success: function(results3){
+													IdeaList[IdeaListCounter,0] = results3[0];  //source user
+												}
+												
 											IdeaList[IdeaListCounter,1] = object2.get('IdeaText'); //text
 											IdeaList[IdeaListCounter,2] = object2.get('IdeaImage'); //image
 											IdeaList[IdeaListCounter,3] = object2.get('IdeaLikes'); //likes
