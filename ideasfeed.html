@@ -153,16 +153,16 @@
 											var object2 = results2[j];
 											IdeaListCounter++;
 											
-											var ideasourcename = new Parse.Query("User");
-											ideasourcename.equalTo("objectId", object2.get('objectId_User').id);
-											ideasourcename.find({
-												success: function(results3){
-													IdeaList[IdeaListCounter,0] = results3[0].get('name');  //source user
-												},
-												error: function(error) {
-													alert("Error: " + error.code + " " + error.message);
-												}
-											});
+										var ideausername = new Parse.Query("User");
+										query.get(object2.get('objectId').id, {
+											success: function(object3) {
+												IdeaList[IdeaListCounter,0] = object3.get('name');
+											},
+			
+											error: function(object3, error) {
+											// error is an instance of Parse.Error.
+											}
+										});
 											
 											
 											IdeaList[IdeaListCounter,1] = object2.get('IdeaText'); //text
