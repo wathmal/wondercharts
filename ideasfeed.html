@@ -172,15 +172,16 @@
 												var i = document.createElement("H1");                // Create a <h1> element
 												var k = document.createTextNode(IdeaList[IdeaListCounter,1]);     // Create a text node
 												i.appendChild(k); 	
+												div.appendChild(i);
 								
 												
 							
 												var img = document.createElement("img");
 												img.src = IdeaList[IdeaListCounter,2];
-												document.body.appendChild(img);
-													
-												document.body.appendChild(document.createElement("br"));	
-							
+												div.appendChild(img);
+												
+												div.appendChild(document.createElement("br"));
+												
 												var a = document.createElement('a');
 												var linkText = document.createTextNode("Like this idea (" +IdeaList[IdeaListCounter,3] +" Likes)");
 												a.appendChild(linkText);
@@ -189,10 +190,9 @@
 												a.onclick = function() {Like(postid);}; // for IE
 												a.style = "cursor:pointer;";
 												a.href = "#";
-												document.body.appendChild(a);
+												div.appendChild(a);
 												
-												
-												document.body.appendChild(document.createElement("br"));	
+												div.appendChild(document.createElement("br"));
 												
 												var aa = document.createElement('a');
 												var linkText2 = document.createTextNode("Report this idea");
@@ -200,8 +200,8 @@
 												aa.title = "Report this idea";
 												aa.onclick = "Report('" +postid +"')";
 												aa.style = "cursor:pointer;";
-												document.body.appendChild(aa);
-												
+												div.appendChild(aa);
+																								
 											document.body.appendChild(div);
 											
 											
