@@ -113,7 +113,7 @@
 		</script>
 		
 	
-		<div class="main" style="margin-left:17%;margin-top:-7%">
+		<div class="main" id="main" style="margin-left:17%;margin-top:-7%">
 	
 			<div class="col_1_of_2 span_1_of_2">	
 				<label style="color:#ffffff;font-size:50;" class="text" value="" id="active_label">
@@ -203,8 +203,12 @@
 												aa.onclick = "Report('" +postid +"')";
 												aa.style = "cursor:pointer;";
 												div.appendChild(aa);
-																								
-											document.body.appendChild(div);
+																			
+
+											var main = document.createElement("div");
+											main.id="main";
+											
+											main.appendChild(div);
 											
 											
 										}
