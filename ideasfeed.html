@@ -154,10 +154,10 @@
 											IdeaListCounter++;
 											
 											var ideasourcename = new Parse.Query("User");
-											ideasourcename.equalTo("objectId_User", {__type: "Pointer",className: "_User",objectId: object.get('objectId_User').name});
+											ideasourcename.equalTo("objectId", {__type: "Pointer",className: "_User",objectId: object.get('objectId').name});
 											ideasourcename.find({
 												success: function(results3){
-													IdeaList[IdeaListCounter,0] = results3[0];  //source user
+													IdeaList[IdeaListCounter,0] = results3[0].get('name');  //source user
 												}
 											});
 											
