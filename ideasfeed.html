@@ -154,7 +154,7 @@
 											IdeaListCounter++;
 											
 										var ideausername = new Parse.Query("User");
-										ideausername.get(object2.get('objectId').id, {
+										ideausername.get(object2.get('objectId_User').id, {
 											success: function(object3) {
 												IdeaList[IdeaListCounter,0] = object3.get('name');
 											},
