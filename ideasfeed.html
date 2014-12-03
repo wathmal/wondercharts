@@ -151,11 +151,19 @@
 									
 										for (var j = 0; j < results2.length; j++) { 
 											var object2 = results2[j];
+											var ideausername2 = "";
 											IdeaListCounter++;
 											
-											var ideacreator = object2.getUser("objectId_User");
+											var ideausername = new Parse.Query("User");
+											ideausername.equalTo("objectId",object2.get('objectId_User').id);
 											
-											IdeaList[IdeaListCounter,0] = ideacreator.id; //sourceuser
+											ideausername.first({
+												success: function(ideausernameresult) {
+													ideausername2 = ideausernameresult.get("name");
+												}
+											});
+											
+											IdeaList[IdeaListCounter,0] = ideacreator.id + " " + ideausername2; //sourceuser
 											IdeaList[IdeaListCounter,1] = object2.get('IdeaText'); //text
 											IdeaList[IdeaListCounter,2] = object2.get('IdeaImage'); //image
 											IdeaList[IdeaListCounter,3] = object2.get('IdeaLikes'); //likes
