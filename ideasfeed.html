@@ -154,7 +154,7 @@
 											var ideausername2 = "";
 											IdeaListCounter++;
 											
-											Parse.Query(Parse.User) query = ParseUser.getQuery();
+											Parse.Query query = ParseUser.getQuery();
 											query.equalTo("objectId", object2.get("objectId_User").id);
 											query.findInBackground(new FindCallback<ParseUser>() {
 												public void done(List<ParseUser> objects, ParseException e) {
