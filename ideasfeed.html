@@ -154,27 +154,6 @@
 											var ideausername2 = "";
 											IdeaListCounter++;
 											
-											var query = new Parse.Query("User");
-											query.equalTo("objectId", object2.get("objectId_User").id);
-											query.findInBackground(new FindCallback<ParseUser>() {
-												public void done(List<ParseUser> objects, ParseException e) {
-													if (e == null) {
-													alert('success');
-													} else {
-													// Something went wrong.
-													}
-												}
-											});
-											
-								<!-- 			var ideausername = new Parse.Query("User");
-								<!-- 			ideausername.equalTo("objectId",object2.get('objectId_User').id);
-											
-								<!-- 			ideausername.first({
-								<!-- 				success: function(ideausernameresult) {
-								<!-- 					ideausername2 = ideausernameresult.get("name");
-								<!-- 				}
-								<!-- 			}); -->
-											
 											IdeaList[IdeaListCounter,0] = object2.get('objectId_User').id + " " + ideausername2; //sourceuser
 											IdeaList[IdeaListCounter,1] = object2.get('IdeaText'); //text
 											IdeaList[IdeaListCounter,2] = object2.get('IdeaImage'); //image
