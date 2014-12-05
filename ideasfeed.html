@@ -154,9 +154,9 @@
 						GetIdea.first({
 							success: function(results) {
 								var SaveReport2 = results;
-								var oldnoreports = SaveReport2.get('IdeaReports');
+								var oldnoreports = SaveReport2.get('IdeaReport');
 								var newnoreports = oldnoreports + 1;
-								SaveReport2.set("IdeaReports", newnoreports);
+								SaveReport2.set("IdeaReport", newnoreports);
 								SaveReport2.save(null, {
 									success: function(result) {
 										document.getElementById(postid3 + "_r").firstChild.data = "You reported this idea successfully.";
