@@ -113,6 +113,79 @@
 		}
 		</script>
 		
+			<script>
+			function Report(postid2){
+			
+			var myuser = Parse.User.current();
+			var Reports = new Parse.Query("Reports");
+			Reports.equalTo("Reported_Idea", {__type: "Pointer",className: "Ideas",objectId: postid2});
+			Reports.equalTo("Source_User",{__type: "Pointer",className: "_User",objectId: myuser.id});
+ 
+			Reports.count({
+				success: function(count) {
+					if (count>0){
+						alert("You have already reported this idea")
+					}
+					else{
+						var SaveReport = Parse.Object.extend("Reports");
+						var savereport = new SaveReport();
+						
+						var ReportedIdea = new Parse.Object.extend("Ideas");
+						var reportedidea = new ReportedIdea();
+						reportedidea.id = postid2;
+						savereport.set("Reported_Idea", reportedidea);
+						
+						var SourceUser = new Parse.Object.extend("User");
+						var sourceuser = new SourceUser();
+						sourceuser.id = myuser.id;
+						savereport.set("Source_User", sourceuser);
+ 
+						savereport.save(null, {
+							success: function(result) {
+							},
+							error: function(error) {
+								alert("Error while saving 'Report': " +error);
+							}
+						});
+						
+						var GetIdea = new Parse.Query("Ideas");
+						GetIdea.equalTo("objectId",postid2);
+ 
+						GetIdea.first({
+							success: function(results) {
+								var SaveReport2 = results;
+								var oldnoreports = SaveReport2.get('IdeaReports');
+								var newnoreports = oldnoreports + 1;
+								SaveReport2.set("IdeaReports", newnoreports);
+								SaveReport2.save(null, {
+									success: function(result) {
+										document.getElementById(postid2 + "_r").firstChild.data = "You reported this idea successfully.";
+									},	
+									error: function(error) {
+										alert("Error while saving 'Report'");
+									}
+								});
+							},
+							error: function(error){
+								alert("Error while saving 'Report': " + error);
+							}
+							
+						});
+						
+						
+					}
+				},
+			
+				error: function(error) {
+					alert(error.description);
+				}
+			});
+			
+			
+			
+		}
+		</script>
+	
 	
 		<div class="main" id="main" style="margin-left:17%;margin-top:2%">
 	
@@ -213,7 +286,7 @@
 												aa.title = "Report this idea";
 												aa.onclick = "Report('" +postid +"')";
 												aa.style = "cursor:pointer;";
-												aa.id = postid;
+												aa.id = postid + "_r";
 												div.appendChild(aa);
 																			
 
