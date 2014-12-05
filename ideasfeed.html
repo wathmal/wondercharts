@@ -86,6 +86,7 @@
 								SaveLike2.set("IdeaLikes", newnolikes);
 								SaveLike2.save(null, {
 									success: function(result) {
+										document.getElementById(postid2).firstChild.data = "You like this idea (" + newnolikes + " likes)";
 									},	
 									error: function(error) {
 										alert("Error while saving 'Like'");
@@ -201,6 +202,7 @@
 												a.onclick = function() {Like(postid);}; // for IE
 												a.style = "cursor:pointer;";
 												a.href = "#";
+												a.id = postid;
 												div.appendChild(a);
 												
 												div.appendChild(document.createElement("br"));
@@ -211,6 +213,7 @@
 												aa.title = "Report this idea";
 												aa.onclick = "Report('" +postid +"')";
 												aa.style = "cursor:pointer;";
+												aa.id = postid;
 												div.appendChild(aa);
 																			
 
