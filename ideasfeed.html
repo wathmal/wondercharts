@@ -284,8 +284,10 @@
 												var linkText2 = document.createTextNode("Report this idea");
 												aa.appendChild(linkText2);
 												aa.title = "Report this idea";
+												aa.setAttribute('onclick','Report(postid);'); // for FF
 												aa.onclick = "Report('" +postid +"')";
 												aa.style = "cursor:pointer;";
+												aa.href = "#";
 												aa.id = postid + "_r";
 												div.appendChild(aa);
 																			
