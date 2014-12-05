@@ -114,11 +114,11 @@
 		</script>
 		
 			<script>
-			function Report(postid2){
+			function Report(postid3){d
 			
 			var myuser = Parse.User.current();
 			var Reports = new Parse.Query("Reports");
-			Reports.equalTo("Reported_Idea", {__type: "Pointer",className: "Ideas",objectId: postid2});
+			Reports.equalTo("Reported_Idea", {__type: "Pointer",className: "Ideas",objectId: postid3});
 			Reports.equalTo("Source_User",{__type: "Pointer",className: "_User",objectId: myuser.id});
  
 			Reports.count({
@@ -132,7 +132,7 @@
 						
 						var ReportedIdea = new Parse.Object.extend("Ideas");
 						var reportedidea = new ReportedIdea();
-						reportedidea.id = postid2;
+						reportedidea.id = postid3;
 						savereport.set("Reported_Idea", reportedidea);
 						
 						var SourceUser = new Parse.Object.extend("User");
@@ -149,7 +149,7 @@
 						});
 						
 						var GetIdea = new Parse.Query("Ideas");
-						GetIdea.equalTo("objectId",postid2);
+						GetIdea.equalTo("objectId",postid3);
  
 						GetIdea.first({
 							success: function(results) {
@@ -159,7 +159,7 @@
 								SaveReport2.set("IdeaReports", newnoreports);
 								SaveReport2.save(null, {
 									success: function(result) {
-										document.getElementById(postid2 + "_r").firstChild.data = "You reported this idea successfully.";
+										document.getElementById(postid3 + "_r").firstChild.data = "You reported this idea successfully.";
 									},	
 									error: function(error) {
 										alert("Error while saving 'Report'");
