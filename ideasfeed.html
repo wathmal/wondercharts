@@ -45,8 +45,8 @@
 			
 			var myuser = Parse.User.current();
 			var Likes = new Parse.Query("Likes");
-			Likes.equalTo("Liked_Idea", {__type: "Pointer",className: "_Likes",objectId: postid2});
-			Likes.equalTo("Source_User",{__type: "Pointer",className: "_Likes",objectId: myuser.id});
+			Likes.equalTo("Liked_Idea", {__type: "Pointer",className: "Likes",objectId: postid2});
+			Likes.equalTo("Source_User",{__type: "Pointer",className: "Likes",objectId: myuser.id});
  
 			Likes.count({
 				success: function(count) {
