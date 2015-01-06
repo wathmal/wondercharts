@@ -1,318 +1,294 @@
 
 <html style="overflow:hidden">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>idea feed</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script id="facebook-jssdk" src="http://connect.facebook.net/en_US/sdk.js"></script><script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
-		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
-		<script id="facebook-jssdk" src="http://connect.facebook.net/en_US/sdk.js"></script><script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
-		<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <link rel="stylesheet" media="screen and (min-device-width: 500px)" href="loginpageWide.css">
+        <link rel="stylesheet" media="screen and (max-device-width: 500px)" href="loginpageNarrow.css">
+        <link href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            #idealist{
+                padding-top: 70px;
+            }
+            #idealist .outerdiv{
+                //max-height: 200px;
+                float: none;
+                height: 35px;
+            }
 
-		<link rel="stylesheet" media="screen and (min-device-width: 500px)" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/23c3568d1261b8acf695c7966e0cf823f996d284/loginpageWide.css">
-		<link rel="stylesheet" media="screen and (max-device-width: 500px)" href="https://gist.githubusercontent.com/wondercharts/cca1b51d344d545c85ad/raw/fe7ddd02a9db01d766d25b25074120e635dd4c37/loginpageNarrow.css">
-		<link href="http://fonts.googleapis.com/css?family=Oxygen:400,300,700" rel="stylesheet" type="text/css">
+            #idealist .avatardiv{
+                float: left;
+                //    width: 25%;
+            }
+            #idealist .namediv{
+                font-weight: bold;
+                float: left;
+                padding-left: 10px;
+                font-size: x-large;
+            }
+            #idealist .titlediv .title{
+                text-align: left;
+            }
 
-	</head>
+        </style>
+    </head>
 
-	<body>
+    <body>
 
-		<script>
-			Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
-		</script>
+        <script>
+            Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
+        </script>
 
-		<script>
-			window.fbAsyncInit = function() {
-				Parse.FacebookUtils.init({ // this line replaces FB.init(
-				appId      : '564283890385172',
-				status     : true, // check Facebook Login status
-				cookie     : true, // enable cookies to allow Parse to access the session
-				xfbml      : true,
-				version    : 'v2.1',
-				oauth      : true
-				});
-			};
-			(function(d, s, id){
-				var js, fjs = d.getElementsByTagName(s)[0];
-				if (d.getElementById(id)) {return;}
-				js = d.createElement(s); js.id = id;
-				js.src = "http://connect.facebook.net/en_US/sdk.js";
-				fjs.parentNode.insertBefore(js, fjs);
-			}(document, 'script', 'facebook-jssdk'));
-		</script>
-		
-		<script>
-			function Like(postid2){
-			
-			var myuser = Parse.User.current();
-			var Likes = new Parse.Query("Likes");
-			Likes.equalTo("Liked_Idea", {__type: "Pointer",className: "Ideas",objectId: postid2});
-			Likes.equalTo("Source_User",{__type: "Pointer",className: "_User",objectId: myuser.id});
- 
-			Likes.count({
-				success: function(count) {
-					if (count>0){
-						alert("You have already liked this idea")
-					}
-					else{
-						var SaveLike = Parse.Object.extend("Likes");
-						var savelike = new SaveLike();
-						
-						var LikedIdea = new Parse.Object.extend("Ideas");
-						var likedidea = new LikedIdea();
-						likedidea.id = postid2;
-						savelike.set("Liked_Idea", likedidea);
-						
-						var SourceUser = new Parse.Object.extend("User");
-						var sourceuser = new SourceUser();
-						sourceuser.id = myuser.id;
-						savelike.set("Source_User", sourceuser);
- 
-						savelike.save(null, {
-							success: function(result) {
-							},
-							error: function(error) {
-								alert("Error while saving 'Like': " +error);
-							}
-						});
-						
-						var GetIdea = new Parse.Query("Ideas");
-						GetIdea.equalTo("objectId",postid2);
- 
-						GetIdea.first({
-							success: function(results) {
-								var SaveLike2 = results;
-								var oldnolikes = SaveLike2.get('IdeaLikes');
-								var newnolikes = oldnolikes + 1;
-								SaveLike2.set("IdeaLikes", newnolikes);
-								SaveLike2.save(null, {
-									success: function(result) {
-										document.getElementById(postid2).firstChild.data = "You like this idea (" + newnolikes + " likes)";
-									},	
-									error: function(error) {
-										alert("Error while saving 'Like'");
-									}
-								});
-							},
-							error: function(error){
-								alert("Error while saving 'Like': " + error);
-							}
-							
-						});
-						
-						
-					}
-				},
-			
-				error: function(error) {
-					alert(error.description);
-				}
-			});
-			
-			
-			
-		}
-		</script>
-		
-			<script>
-			function Report(postid3){
-			
-			var myuser = Parse.User.current();
-			var Reports = new Parse.Query("Reports");
-			Reports.equalTo("Reported_Idea", {__type: "Pointer",className: "Ideas",objectId: postid3});
-			Reports.equalTo("Source_User",{__type: "Pointer",className: "_User",objectId: myuser.id});
- 
-			Reports.count({
-				success: function(count) {
-					if (count>0){
-						alert("You have already reported this idea")
-					}
-					else{
-						var SaveReport = Parse.Object.extend("Reports");
-						var savereport = new SaveReport();
-						
-						var ReportedIdea = new Parse.Object.extend("Ideas");
-						var reportedidea = new ReportedIdea();
-						reportedidea.id = postid3;
-						savereport.set("Reported_Idea", reportedidea);
-						
-						var SourceUser = new Parse.Object.extend("User");
-						var sourceuser = new SourceUser();
-						sourceuser.id = myuser.id;
-						savereport.set("Source_User", sourceuser);
- 
-						savereport.save(null, {
-							success: function(result) {
-							},
-							error: function(error) {
-								alert("Error while saving 'Report': " +error);
-							}
-						});
-						
-						var GetIdea = new Parse.Query("Ideas");
-						GetIdea.equalTo("objectId",postid3);
- 
-						GetIdea.first({
-							success: function(results) {
-								var SaveReport2 = results;
-								var oldnoreports = SaveReport2.get('IdeaReport');
-								var newnoreports = oldnoreports + 1;
-								SaveReport2.set("IdeaReport", newnoreports);
-								SaveReport2.save(null, {
-									success: function(result) {
-										document.getElementById(postid3 + "_r").firstChild.data = "You reported this idea successfully";
-									},	
-									error: function(error) {
-										alert("Error while saving 'Report'");
-									}
-								});
-							},
-							error: function(error){
-								alert("Error while saving 'Report': " + error);
-							}
-							
-						});
-						
-						
-					}
-				},
-			
-				error: function(error) {
-					alert(error.description);
-				}
-			});
-			
-			
-			
-		}
-		</script>
-	
-	
-		<div class="main" id="main" style="margin-left:17%;margin-top:2%">
-	
-			<div class="col_1_of_2 span_1_of_2">	
-				<label style="color:#ffffff;font-size:50;" class="text" value="" id="active_label">
-				Ideas Feed
-				</label>
-			</div>
-			
-			<div>
-				<script>
-					var iMax = 20;
-					var jMax = 10;
-					var IdeaList = new Array();
-					var IdeaListCounter = 0;
-					var myuser = Parse.User.current();
-					var Followers = new Parse.Query("Followers");
-					Followers.equalTo("Source_User",{__type: "Pointer",className: "_User",objectId: myuser.id});
- 
-					Followers.find({
-						success: function(results) {
-							for (var i = 0; i < results.length; i++) { 
-								var object = results[i];
-								
-								var Ideas = new Parse.Query("Ideas");
-								Ideas.equalTo("objectId_User", {__type: "Pointer",className: "_User",objectId: object.get('Destination_User').id});
-								
-								Ideas.find({
-									success: function(results2) {
-										
-										for (i=0;i<iMax;i++) {
-											IdeaList[i]=new Array();
-												for (j=0;j<jMax;j++) {
-													IdeaList[i][j]=0;
-												}
-										}
-									
-										for (var j = 0; j < results2.length; j++) { 
-											var object2 = results2[j];
-											var ideausername2 = "";
-											IdeaListCounter++;
-											
-											IdeaList[IdeaListCounter,0] = object2.get('objectId_User').id + " " + ideausername2; //sourceuser
-											IdeaList[IdeaListCounter,1] = object2.get('IdeaText'); //text
-											IdeaList[IdeaListCounter,2] = object2.get('IdeaImage'); //image
-											IdeaList[IdeaListCounter,3] = object2.get('IdeaLikes'); //likes
-											IdeaList[IdeaListCounter,4] = object2.get('IdeaReport'); //reports
-											
-											var postid = object2.id;
-											var div = document.createElement('div');
-											div.style.width="100%";
-											div.style.marginTop="5%";
-											div.style.float="left";
-											div.style.marginLeft="17%";
-											div.style.backgroundColor="white";
-											div.style.borderWidth="thin";
-											div.style.borderColor="black";
-											div.style.borderStyle="solid";
-											div.style.padding="2%";
-											div.style.textAlign="center";
-										
-											
-												var h = document.createElement("H1");                // Create a <h1> element
-												var t = document.createTextNode(IdeaList[IdeaListCounter,0]);     // Create a text node
-												h.appendChild(t);  
-												div.appendChild(h);
-														
-												var i = document.createElement("H1");                // Create a <h1> element
-												var k = document.createTextNode(IdeaList[IdeaListCounter,1]);     // Create a text node
-												i.appendChild(k); 	
-												div.appendChild(i);
-								
-												div.appendChild(document.createElement("br"));
-																			
-												var img = document.createElement("img");
-												img.src = IdeaList[IdeaListCounter,2];
-												div.appendChild(img);
-												
-												div.appendChild(document.createElement("br"));
-												div.appendChild(document.createElement("br"));
-												
-												var a = document.createElement('a');
-												var linkText = document.createTextNode("Like this idea (" +IdeaList[IdeaListCounter,3] +" Likes)");
-												a.appendChild(linkText);
-												a.title = "Like this idea";
-												a.setAttribute('onclick','Like(postid);'); // for FF
-												a.onclick = function() {Like(postid);}; // for IE
-												a.style = "cursor:pointer;";
-												a.href = "#";
-												a.id = postid;
-												div.appendChild(a);
-												
-												div.appendChild(document.createElement("br"));
-												
-												var aa = document.createElement('a');
-												var linkText2 = document.createTextNode("Report this idea");
-												aa.appendChild(linkText2);
-												aa.title = "Report this idea";
-												aa.setAttribute('onclick','Report(postid);'); // for FF
-												aa.onclick = function() {Report(postid);}; // for IE
-												aa.style = "cursor:pointer;";
-												aa.href = "#";
-												aa.id = postid + "_r";
-												div.appendChild(aa);
-																			
+        <script>
+            window.fbAsyncInit = function () {
+                Parse.FacebookUtils.init({// this line replaces FB.init(
+                    appId: '564283890385172',
+                    status: true, // check Facebook Login status
+                    cookie: true, // enable cookies to allow Parse to access the session
+                    xfbml: true,
+                    version: 'v2.1',
+                    oauth: true
+                });
+            };
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "http://connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
 
-											document.getElementById("main").appendChild(div);
-																					
-											
-											
-										}
-									},
-									error: function(error) {
-										alert("Error: " + error.code + " " + error.message);
-									}
-								});
-								
-							}
-						},
-						error: function(error) {
-							alert("Error: " + error.code + " " + error.message);
-						}
-					});
-				</script>
-			</div>
-	
-		</div>
-		
-	</body>
+        <div class="main" id="main" style="margin-left:17%;margin-top:2%">
+
+            <div class="col_1_of_2 span_1_of_2">	
+                <label style="color:#ffffff;font-size:50;" class="text" id="active_label">
+                    Ideas Feed
+                </label>
+            </div>
+
+
+
+            <div id="idealist">
+                
+            </div>
+            
+        </div>
+        <script type="text/javascript">
+            /*
+            //Parse.User.logOut();
+            var users = new Parse.Query("User");
+            //users.equalTo("objectId","Eu4nTJrQqd");
+            users.find({
+                success: function (res) {
+                    // The object was retrieved successfully.
+                    console.log(res);
+                },
+                error: function (error) {
+                    // The object was not retrieved successfully.
+                    // error is a Parse.Error with an error code and message.
+                    console.log(error);
+                }
+            });
+
+            */
+
+            var ideas = new Parse.Query("ChartIdea");
+            ideas.ascending("likes_count");
+            ideas.include("author");
+            ideas.find({
+                success: function (res) {
+                    console.log(res);
+
+                    res.forEach(function (idea) {
+                        //var picurl= idea.attributes.author.attributes.thumbnail._url;
+                        var picurl = "";
+                        //console.log(idea.attributes.author.attributes.thumbnail);
+                        if (idea.attributes.author.attributes.thumbnail !== undefined) {
+                            picurl = idea.attributes.author.attributes.thumbnail._url;
+                        }
+                        var name = idea.attributes.author.attributes.first_name + " " + idea.attributes.author.attributes.last_name;
+                        var nolikes = idea.attributes.likes_count;
+                        var pic = idea.attributes.thumbnail._url;
+                        var title = idea.attributes.title;
+                        var desc = idea.attributes.description;
+
+                        console.log(name + "|" + title + "|" + desc + "|" + picurl);
+                        /*
+                         console.log(idea.attributes.author.attributes._thumbnail.url);
+                         console.log(idea.attributes.author.attributes.first_name+" "+idea.attributes.author.attributes.last_name);
+                         console.log(idea.attributes.title);
+                         console.log(idea.attributes.thumbnail);
+                         console.log(idea.attributes.likes_count);
+                         console.log(idea.attributes.reports_count);
+                         */
+
+
+
+                        var postid = idea.id;
+                        var div = document.createElement('div');
+                        div.style.width = "100%";
+                        div.style.marginTop = "5%";
+                        div.style.float = "left";
+                        div.style.marginLeft = "17%";
+                        div.style.backgroundColor = "white";
+                        div.style.borderWidth = "thin";
+                        div.style.borderColor = "black";
+                        div.style.borderStyle = "solid";
+                        div.style.padding = "2%";
+                        div.style.textAlign = "center";
+                        //div.className= idea.id;
+
+                        var odiv = document.createElement("div");
+                        odiv.className = "outerdiv";
+
+                        var div1 = document.createElement("div");
+                        div1.className = "avatardiv";
+                        var avatar = document.createElement("img");
+                        avatar.className = "avatar";
+                        avatar.src = picurl;
+                        avatar.width = 50;
+                        div1.appendChild(avatar);
+                        odiv.appendChild(div1);
+
+                        var div2 = document.createElement("div");
+                        div2.className = "namediv";
+                        var h = document.createElement("H1");                // Create a <h1> element
+                        var t = document.createTextNode(name);     // Create a text node
+                        h.appendChild(t);
+                        h.className = "username";
+                        div2.appendChild(h);
+                        odiv.appendChild(div2);
+
+                        div.appendChild(odiv);
+                        div.appendChild(document.createElement("br"));
+
+
+                        var div3 = document.createElement("div");
+                        div3.className = "titlediv";
+                        var i = document.createElement("H1");                // Create a <h1> element
+                        var k = document.createTextNode(title);     // Create a text node
+                        i.className = "title";
+                        i.appendChild(k);
+                        div3.appendChild(i);
+
+                        div.appendChild(div3);
+
+                        div.appendChild(document.createElement("br"));
+
+                        var img = document.createElement("img");
+                        img.src = pic;
+                        //img.width= 100;
+                        div.appendChild(img);
+
+                        div.appendChild(document.createElement("br"));
+                        var pd = document.createElement("p");
+                        var pi = document.createTextNode(desc);
+                        pd.appendChild(pi);
+                        div.appendChild(pd);
+                        div.appendChild(document.createElement("br"));
+                        div.appendChild(document.createElement("br"));
+
+                        var a = document.createElement('a');
+                        var linkText = document.createTextNode("Like this idea (" + nolikes + " Likes)");
+                        a.appendChild(linkText);
+                        a.title = "Like this idea";
+                        a.setAttribute('onclick', 'Like('+postid+');'); // for FF
+                        a.onclick = function () {
+                            Like(postid);
+                        }; // for IE
+                        a.style = "cursor:pointer;";
+                        a.href = "#";
+                        a.id = postid;
+                        div.appendChild(a);
+
+                        div.appendChild(document.createElement("br"));
+
+                        var aa = document.createElement('a');
+                        var linkText2 = document.createTextNode("Report this idea");
+                        aa.appendChild(linkText2);
+                        aa.title = "Report this idea";
+                        aa.setAttribute('onclick', 'Report('+postid+');'); // for FF
+                        aa.onclick = function () {
+                            Report(postid);
+                        }; // for IE
+                        aa.style = "cursor:pointer;";
+                        aa.href = "#";
+                        aa.id = postid + "_r";
+                        div.appendChild(aa);
+
+
+                        document.getElementById("idealist").appendChild(div);
+
+
+
+                    });
+
+                }
+            });
+
+
+
+            function Like(postid) {
+                var query = new Parse.Query("ChartIdea");
+                query.equalTo("objectId",postid);
+                query.first({
+                    success: function (idea) {
+                        console.log(idea);
+                        var user1 = Parse.User.current();
+                        var rel= idea.relation("likes");
+                        rel.add(user1);
+                        //idea.set("likes", user1);
+                        //idea.increment("likes_count");
+                        idea.save(null,{
+                            success: function (data){
+                                alert("your liked the post");
+                                console.log(data);
+                            //    data.save();
+                            //    console.log(data.attributes.likes_count);
+                                var lcount= data.attributes.likes_count+1;
+                                document.getElementById(postid).innerHTML= "Like this idea ("+ lcount  +" Likes)";
+                            }
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+            
+            function Report(postid){
+                var query = new Parse.Query("ChartIdea");
+                query.equalTo("objectId",postid);
+                query.first({
+                    success: function (idea) {
+                        console.log(idea);
+                        var user1 = Parse.User.current();
+                        var rel= idea.relation("reports");
+                        rel.add(user1);
+                        //idea.set("likes", user1);
+                        //idea.increment("likes_count");
+                        idea.save(null,{
+                            success: function (data){
+                                alert("your liked the post");
+                                console.log(data);
+                            //    data.save();
+                            }
+                        });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        </script>
+    </body>
 </html>
