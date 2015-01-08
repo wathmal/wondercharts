@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>test</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" media="screen and (min-device-width: 500px)" href="loginpageWide.css">
+        <link rel="stylesheet" media="screen and (max-device-width: 500px)" href="loginpageNarrow.css">
+
+
+
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+        <script id="facebook-jssdk" src="http://connect.facebook.net/en_US/sdk.js"></script>
+        <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.3.0.min.js"></script>
+        <script>
+            Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
+        </script>
+        <!--        <style type="text/css">
+                    #main .outerdiv{
+                        //max-height: 200px;
+                        float: none;
+                        height: 35px;
+                    }
+        
+                    #main .avatardiv{
+                        float: left;
+                        //    width: 25%;
+                    }
+                    #main .namediv{
+                        font-weight: bold;
+                        float: left;
+                        padding-left: 10px;
+                        font-size: x-large;
+                    }
+                    #main .titlediv .title{
+                        text-align: left;
+                    }
+        
+                </style>
+        
+                <script type="text/javascript">
+                    //Parse.User.logOut();
+                    var users = new Parse.Query("User");
+                    //users.equalTo("objectId","Eu4nTJrQqd");
+                    users.find({
+                        success: function (res) {
+                            // The object was retrieved successfully.
+                            console.log(res);
+                        },
+                        error: function (error) {
+                            // The object was not retrieved successfully.
+                            // error is a Parse.Error with an error code and message.
+                            console.log(error);
+                        }
+                    });
+        
+        
+        
+                    var ideas = new Parse.Query("ChartIdea");
+                    ideas.descending("likes_count");
+                    ideas.include("author");
+                    ideas.find({
+                        success: function (res) {
+                            console.log(res);
+        
+                            res.forEach(function (idea) {
+                                //var picurl= idea.attributes.author.attributes.thumbnail._url;
+                                var picurl = "";
+                                //console.log(idea.attributes.author.attributes.thumbnail);
+                                if (idea.attributes.author.attributes.thumbnail !== undefined) {
+                                    picurl = idea.attributes.author.attributes.thumbnail._url;
+                                }
+                                var name = idea.attributes.author.attributes.first_name + " " + idea.attributes.author.attributes.last_name;
+                                var nolikes = idea.attributes.likes_count;
+                                var pic = idea.attributes.thumbnail._url;
+                                var title = idea.attributes.title;
+                                var desc = idea.attributes.description;
+        
+                                console.log(name + "|" + title + "|" + desc + "|" + picurl);
+                                /*
+                                 console.log(idea.attributes.author.attributes._thumbnail.url);
+                                 console.log(idea.attributes.author.attributes.first_name+" "+idea.attributes.author.attributes.last_name);
+                                 console.log(idea.attributes.title);
+                                 console.log(idea.attributes.thumbnail);
+                                 console.log(idea.attributes.likes_count);
+                                 console.log(idea.attributes.reports_count);
+                                 */
+        
+        
+        
+                                var postid = idea.id;
+                                var div = document.createElement('div');
+                                div.style.width = "100%";
+                                div.style.marginTop = "5%";
+                                div.style.float = "left";
+                                div.style.marginLeft = "17%";
+                                div.style.backgroundColor = "white";
+                                div.style.borderWidth = "thin";
+                                div.style.borderColor = "black";
+                                div.style.borderStyle = "solid";
+                                div.style.padding = "2%";
+                                div.style.textAlign = "center";
+                                //div.className= idea.id;
+        
+                                var odiv = document.createElement("div");
+                                odiv.className = "outerdiv";
+        
+                                var div1 = document.createElement("div");
+                                div1.className = "avatardiv";
+                                var avatar = document.createElement("img");
+                                avatar.className = "avatar";
+                                avatar.src = picurl;
+                                avatar.width = 50;
+                                div1.appendChild(avatar);
+                                odiv.appendChild(div1);
+        
+                                var div2 = document.createElement("div");
+                                div2.className = "namediv";
+                                var h = document.createElement("H1");                // Create a <h1> element
+                                var t = document.createTextNode(name);     // Create a text node
+                                h.appendChild(t);
+                                h.className = "username";
+                                div2.appendChild(h);
+                                odiv.appendChild(div2);
+        
+                                div.appendChild(odiv);
+                                div.appendChild(document.createElement("br"));
+        
+        
+                                var div3 = document.createElement("div");
+                                div3.className = "titlediv";
+                                var i = document.createElement("H1");                // Create a <h1> element
+                                var k = document.createTextNode(title);     // Create a text node
+                                i.className = "title";
+                                i.appendChild(k);
+                                div3.appendChild(i);
+        
+                                div.appendChild(div3);
+        
+                                div.appendChild(document.createElement("br"));
+        
+                                var img = document.createElement("img");
+                                img.src = pic;
+                                //img.width= 100;
+                                div.appendChild(img);
+        
+                                div.appendChild(document.createElement("br"));
+                                var pd = document.createElement("p");
+                                var pi = document.createTextNode(desc);
+                                pd.appendChild(pi);
+                                div.appendChild(pd);
+                                div.appendChild(document.createElement("br"));
+                                div.appendChild(document.createElement("br"));
+        
+                                var a = document.createElement('a');
+                                var linkText = document.createTextNode("Like this idea (" + nolikes + " Likes)");
+                                a.appendChild(linkText);
+                                a.title = "Like this idea";
+                                a.setAttribute('onclick', 'Like('+postid+');'); // for FF
+                                a.onclick = function () {
+                                    Like(postid);
+                                }; // for IE
+                                a.style = "cursor:pointer;";
+                                a.href = "#";
+                                a.id = postid;
+                                div.appendChild(a);
+        
+                                div.appendChild(document.createElement("br"));
+        
+                                var aa = document.createElement('a');
+                                var linkText2 = document.createTextNode("Report this idea");
+                                aa.appendChild(linkText2);
+                                aa.title = "Report this idea";
+                                aa.setAttribute('onclick', 'Report('+postid+');'); // for FF
+                                aa.onclick = function () {
+                                    Report(postid);
+                                }; // for IE
+                                aa.style = "cursor:pointer;";
+                                aa.href = "#";
+                                aa.id = postid + "_r";
+                                div.appendChild(aa);
+        
+        
+                                document.getElementById("main").appendChild(div);
+        
+        
+        
+                            });
+        
+                        }
+                    });
+        
+        
+        
+                    function Like(postid) {
+                        var query = new Parse.Query("ChartIdea");
+                        query.equalTo("objectId",postid);
+                        query.first({
+                            success: function (idea) {
+                                console.log(idea);
+                                var user1 = Parse.User.current();
+                                var rel= idea.relation("likes");
+                                rel.add(user1);
+                                //idea.set("likes", user1);
+                                //idea.increment("likes_count");
+                                idea.save(null,{
+                                    success: function (data){
+                                        alert("your liked the post");
+                                        console.log(data);
+                                    //    data.save();
+                                    }
+                                });
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                    
+                    function Report(postid){
+                        var query = new Parse.Query("ChartIdea");
+                        query.equalTo("objectId",postid);
+                        query.first({
+                            success: function (idea) {
+                                console.log(idea);
+                                var user1 = Parse.User.current();
+                                var rel= idea.relation("reports");
+                                rel.add(user1);
+                                //idea.set("likes", user1);
+                                //idea.increment("likes_count");
+                                idea.save(null,{
+                                    success: function (data){
+                                        alert("you have reported the post");
+                                        console.log(data);
+                                    //    data.save();
+                                    }
+                                });
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                </script>-->
+    </head>
+    <body>
+        <div class="main" id="main" style="margin-left:17%;margin-top:2%">ela!</div>
+
+        <script type="text/javascript">
+
+
+            // update user shared info table
+//    
+//            var SharedInfo = Parse.Object.extend("UserSharedInformation");
+//            var sharedU = new SharedInfo();
+//
+//            sharedU.set("first_name", "sonna");
+//            sharedU.set("last_name", "waa");
+//            //sharedU.set("facebookId", "");
+//            sharedU.set("parent", Parse.User.current());
+//            sharedU.save(null, {
+//                success: function (data) {
+//                    console.log("successfully added to usersharedinfo");
+//                    console.log(data);
+//                },
+//                error: function (error) {
+//                    console.log(error);
+//                }
+//            });
+            usersharedfield("first_name","awesome");
+            function usersharedfield(name, value) {
+                var query = new Parse.Query("UserSharedInformation");
+                query.equalTo("parent", Parse.User.current());
+                query.find().then(function (results) {
+                    console.log(results[0]);
+                    results[0].set(name, value);
+                    results[0].save(null, {
+                        success: function (data) {
+                            console.log("successfully added to usersharedinfo");
+                            console.log(data);
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+
+                });
+            }
+
+
+
+        </script>
+    </body>
+
+</html>

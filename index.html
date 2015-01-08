@@ -16,9 +16,9 @@
                     $(this).toggleClass('active');
 
                     if ($(this).hasClass('active'))
-                        $(this).find('span').html('&#x25B2;')
+                        $(this).find('span').html('&#x25B2;');
                     else
-                        $(this).find('span').html('&#x25BC;')
+                        $(this).find('span').html('&#x25BC;');
                 })
             });
         </script>
@@ -63,24 +63,49 @@
                         } else {
                             alert("User logged in through Facebook!");
                         }
-
-                        var myuser = Parse.User.current();
                         /*
-                         FB.api('/me?scope=email', function(me) {
-                         myuser.set("email", me.email);
-                         myuser.set("name", me.first_name);
-                         myuser.set("surname", me.last_name);
-                         myuser.set("locale", me.locale);
-                         myuser.set("agerange", me.age_range);
-                         myuser.set("gender", me.gender);
-                         
-                         myuser.save(null,{
-                         success: function(myuser){  alert('saved');},
-                         error: function(myuser,error3){ alert(error3);}
-                         });
-                         });
-                         */
-                        location.reload();
+                        var myuser = Parse.User.current();
+                            FB.api('/me?scope=email', function (me) {
+                                console.log(me);
+                                myuser.set("email", me.email);
+                                //myuser.set("username", me.email);
+                                myuser.set("name", me.first_name);
+                                myuser.set("surname", me.last_name);
+                                myuser.set("locale", me.locale);
+                                //myuser.set("agerange", me.age_range);
+                                
+                                // use numbers for gender
+                                myuser.set("gender", me.gender);
+                                
+                                myuser.save(null, {
+                                    success: function (myuser) {
+                                        alert('saved');
+                                    },
+                                    error: function (myuser, error3) {
+                                        alert(error3);
+                                    }
+                                });
+                            });
+                        */
+                        console.log(user);
+                        //location.reload();
+                        // update page without reloading th epage.
+                        var CurrentUser = Parse.User.current();
+
+                        if (CurrentUser) {
+                            document.getElementById("bd1").style.display = "none";
+                            var CurrentUser1 = Parse.User.current();
+                            var FullName = "";
+
+                            FullName += "Hi, ";
+                            FullName += CurrentUser1.attributes.name;
+
+                            document.getElementById("NameOfUser").innerHTML = FullName;
+                            document.getElementById("bd2").style.display = "block";
+                        }
+                        
+                        
+                        
                     },
                     error: function (user, error) {
                         alert("User cancelled the Facebook login or did not fully authorize.");
@@ -166,7 +191,7 @@
                     <span>&#x25BC;</span>
                 </a>
 
-                <div id="login-content" style="background-image:url('http://wondercharts.github.io/wondercharts/loginback.jpg');border-color:#4B454C;border-width:thin;border-style:solid;top:0%;margin-top:50;">
+                <div id="login-content" style="background-image:url('loginback.jpg');border-color:#4B454C;border-width:thin;border-style:solid;top:0%;margin-top:50;">
                     <div id="bd3" style="display:block">
                         <form>
                             <fieldset id="inputs">
@@ -175,7 +200,7 @@
                             </fieldset>
                             <fieldset id="actions">
 
-                                <a onclick="Login1();" aria-label="Login" class="btn-primary-small pop" style="background-color:#FCCF62;color:#FCCF62;margin-top:10;width:15%;height:20;float:right;vertical-align:middle;" ref="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
+                                <a onclick="Login1();" aria-label="Login" class="btn-primary-small pop" style="background-color:#FCCF62;color:#FCCF62;margin-top:10;width:15%;height:20;float:right;vertical-align:middle;" role="button">
                                     Login
                                 </a>
 
@@ -200,7 +225,7 @@
                                 <input id="resetemail" type="email" style="margin-top:20;" name="Email" placeholder="Your email address" required>   
                             </fieldset>
                             <fieldset id="actions1">
-                                <a onclick="ChangePass2();" aria-label="Login6" class="btn-primary-small pop" style="background-color:#FCCF62;color:#FCCF62;margin-top:20;width:89%;height:16;float:left;vertical-align:middle;font-size:medium;padding-bottom:23;" ref="http://www.wondercharts.com/#!New_User/c1sfz" role="button">
+                                <a onclick="ChangePass2();" aria-label="Login6" class="btn-primary-small pop" style="background-color:#FCCF62;color:#FCCF62;margin-top:20;width:89%;height:16;float:left;vertical-align:middle;font-size:medium;padding-bottom:23;" ref="newuser.html" role="button">
                                     Send reset password link
                                 </a>
                             </fieldset>

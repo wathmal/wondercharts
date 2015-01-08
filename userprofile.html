@@ -12,7 +12,7 @@
             window.scrollTo(0,1); 
             }
         </script>
-
+        <link rel="stylesheet" href=stylesheets/button.css>
         <link rel="stylesheet" media="screen and (min-device-width: 500px)" href="loginpageWide.css">
         <link rel="stylesheet" media="screen and (max-device-width: 500px)" href="loginpageNarrow.css">
 
@@ -34,7 +34,7 @@
 
     <body>
         <script>
-Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
+            Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8DuSTi3Hrz9r4b2AiMJ4jT50J");
         </script>
 
         <script>
@@ -73,11 +73,11 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
             <form style="width:129%;float:left;">
 
                 <div style="width:100%;">
-                    <img src="http://files.parsetfss.com/7481c65d-d0f7-4622-b5c6-947ff3dfa36f/tfss-6a7f3758-756f-422d-b947-f2ef37a47944-patrick.camilleri@retail.com.mt.jpg" id="ProfileImage" alt="Profile picture" style="float:left;margin-right:5%;width: 19%;margin-top:-3.5%">
+                    <img src="noprofilepic.png" id="ProfileImage" alt="Profile picture" style="float:left;margin-right:5%;width: 19%;margin-top:-3.5%">
 
                     <div style="margin-left:0;padding-left:0;border-left-width:0;margin-top:3%;" class="submit">
                         <div class="lable-2" style="width:52%">
-                            <input type="file" id="profilePhotoFileUpload" accept="image/*" style="width:22%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;font-size:small;" onchange="photoupload()" value="">			
+                            <input type="file" id="profilePhotoFileUpload" accept="image/*" style="width:22%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;font-size:small;" onchange="photoupload()">			
                         </div>
                     </div>
                 </div>
@@ -165,14 +165,14 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
                                 }">
                         <label style="color:White;float:left;font-size:small;margin-left:-5px;" id="gender_label" class="text" value="">An email with a special 'reset password' link will be sent.  Please click this link to reset your password.
                         </label>	   
-                        <input style="margin-top:10%;width:52%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;margin-bottom:10%;" type="button" onclick="changepasswordfunction()" value="Change Password">			
+                        <input style="margin-top:10%;width:52%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;margin-bottom:10%;" type="button" onclick="changepasswordfunction()" value="Change Password"  class="btn btn-warning btn-lg">			
                     </div>
 
 
 
                 </div>
 
-                <label style="color:White;float:left;font-size:x-large;margin-top:10%; margin-left: -200px;" id="" class="text" value="">Delete Account
+                <label style="color:White;float:left;font-size:x-large;margin-top:12%; margin-left: -200px;" id="" class="text" value="">Delete Account
                 </label>	   
 
                 <div style="margin-left:0;padding-left:0;border-left-width:0;margin-top:3%;" class="submit">
@@ -182,7 +182,7 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
                                 }">
                         <label style="color:White;float:left;font-size:small;margin-left:-5px;" id="gender_label" class="text" value="">Your account will be permenently deleted.
                         </label>	   
-                        <input style="margin-top:10%;width:52%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;margin-bottom:10%;" type="button" onclick="removeUser()" value="Delete Account">			
+                        <input style="margin-top:10%;width:52%;float:left;padding-left:0;margin-left:0;border-left-width:0;padding-right:0;margin-bottom:10%;" type="button" onclick="removeUser()" value="Delete Account" class="btn btn-danger btn-lg">			
                     </div>
 
 
@@ -239,6 +239,28 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
 
 
         <script>
+            function usersharedfield(name, value) {
+                var query = new Parse.Query("UserSharedInformation");
+                query.equalTo("parent", Parse.User.current());
+                query.find().then(function (results) {
+                    console.log(results[0]);
+                    results[0].set(name, value);
+                    results[0].save(null, {
+                        success: function (data) {
+                            console.log("successfully added to usersharedinfo");
+                            console.log(data);
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+
+                });
+            }
+
+
+
+
             var query = new Parse.Query("User");
             query.equalTo("email", document.getElementById("email").value);
 
@@ -289,9 +311,11 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
                 switch (posting) {
                     case 'first':
                         CurrentUser.set("name", element.value);
+                        usersharedfield("first_name",element.value);
                         break;
                     case 'surname':
                         CurrentUser.set("surname", element.value);
+                        usersharedfield("last_name",element.value);
                         break;
                     case 'email':
                         CurrentUser.set("email", element.value);
@@ -375,36 +399,40 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
                 console.log(CurrentUser);
 
                 var sessiontoken;
+                if (CurrentUser.attributes.authData == null) {
+
+                    Parse.User.logIn(CurrentUser.attributes.username, document.getElementById("curpassword").value, {
+                        success: function (user) {
+                            user.set("StayLoggedIn", "false");
+
+                            console.log(user._sessionToken);
+                            sessiontoken = user._sessionToken;
+                            user.save();
 
 
-                Parse.User.logIn(CurrentUser.attributes.username, document.getElementById("curpassword").value, {
-                    success: function (user) {
-                        user.set("StayLoggedIn", "false");
 
-                        console.log(user._sessionToken);
-                        sessiontoken = user._sessionToken;
-                        user.save();
-
-
-
-                        $.ajax({
-                            url: 'https://api.parse.com/1/users/' + user.id,
-                            type: 'DELETE',
-                            headers: {'X-Parse-Application-Id': 'uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy', 'X-Parse-REST-API-Key': 'TFqmcFWUMHWNiflk8QUbJWF7CiwUcovvzt1OB1Wm', 'X-Parse-Session-Token': sessiontoken},
-                            success: function (result) {
-                                // Do something with the result
-                                alert("you have successfully deleted your account.");
-                                Parse.User.logOut();
-                                window.location.href = "index.html";
-                            }
-                        });
-                        //  location.reload();
-                    },
-                    error: function (user, error) {
-                        //alert(error);
-                        alert("incorrect username or password");
-                    }
-                });
+                            $.ajax({
+                                url: 'https://api.parse.com/1/users/' + user.id,
+                                type: 'DELETE',
+                                headers: {'X-Parse-Application-Id': 'uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy', 'X-Parse-REST-API-Key': 'TFqmcFWUMHWNiflk8QUbJWF7CiwUcovvzt1OB1Wm', 'X-Parse-Session-Token': sessiontoken},
+                                success: function (result) {
+                                    // Do something with the result
+                                    alert("you have successfully deleted your account.");
+                                    Parse.User.logOut();
+                                    window.location.href = "index.html";
+                                }
+                            });
+                            //  location.reload();
+                        },
+                        error: function (user, error) {
+                            //alert(error);
+                            alert("incorrect username or password");
+                        }
+                    });
+                }
+                else {
+                    alert("you are logged using facebook. pls remove the app in facebook settings");
+                }
                 /*
                  Parse.User.logIn(CurrentUser.attributes.username, document.getElementById("curpassword").value, {
                  success: function(user) {
@@ -448,6 +476,8 @@ Parse.initialize("uNXNmbtDY6LnSeVtCL1tVC1GOy1BffVeQx2hnGRy", "h5lAKCjHajJ7Hjy8Du
                         var parseFileURL = parseFile.url();
                         CurrentUser.set("ProfileImage", parseFileURL);
                         CurrentUser.save();
+                        
+                        usersharedfield("thumbnail",parseFile);
                         document.getElementById("ProfileImage").src = parseFileURL;
                         alert("Profile image has been saved");
 
