@@ -97,7 +97,7 @@
                                                 console.log("successfully added to usersharedinfo table");
                                                 console.log(data);
                                                 //window.location.href = "index.html";
-                                            //    setUserPage();
+                                                setUserPage();
                                             },
                                             error: function (error) {
                                                 console.log(error);
@@ -119,14 +119,12 @@
 
                         } else {
                             alert("User logged in through Facebook!");
+                            setUserPage();
                         }
                         
                         
 
                         console.log(user);
-                        setUserPage();
-                        //location.reload();
-                        // update page without reloading th epage.
                         /*
                         var CurrentUser = Parse.User.current();
 
