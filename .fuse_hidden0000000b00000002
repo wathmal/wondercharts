@@ -60,14 +60,13 @@
                     success: function (user) {
                         if (!user.existed()) {
                             var myuser = Parse.User.current();
-                            FB.api('me?fields=first_name,last_name,gender,email,picture', function (me) {
+                            FB.api('/me?scope=email', function (me) {
                                 console.log(me);
                                 myuser.set("email", me.email);
                                 myuser.set("username", me.email);
                                 myuser.set("name", me.first_name);
                                 myuser.set("surname", me.last_name);
                                 myuser.set("locale", me.locale);
-                                myuser.set("ProfileImage", me.picture.data.url);
                                 //myuser.set("agerange", me.age_range);
                                 /*
                                  * gender is using number
