@@ -59,37 +59,74 @@
                 Parse.FacebookUtils.logIn("email", {
                     success: function (user) {
                         if (!user.existed()) {
-                            alert("User signed up and logged in through Facebook!");
-                        } else {
-                            alert("User logged in through Facebook!");
-                        }
-                        /*
-                        var myuser = Parse.User.current();
+                            var myuser = Parse.User.current();
                             FB.api('/me?scope=email', function (me) {
                                 console.log(me);
                                 myuser.set("email", me.email);
-                                //myuser.set("username", me.email);
+                                myuser.set("username", me.email);
                                 myuser.set("name", me.first_name);
                                 myuser.set("surname", me.last_name);
                                 myuser.set("locale", me.locale);
                                 //myuser.set("agerange", me.age_range);
-                                
-                                // use numbers for gender
-                                myuser.set("gender", me.gender);
-                                
+                                /*
+                                 * gender is using number
+                                 * correct this with simple if
+                                 */
+                                if(me.gender === "male"){
+                                    myuser.set("gender", 1);
+                                }
+                                else if(me.gender === "female"){
+                                    myuser.set("gender", 2);
+                                }
+                                else{
+                                    myuser.set("gender", 0);
+                                }
+
                                 myuser.save(null, {
                                     success: function (myuser) {
+                                        var SharedInfo = Parse.Object.extend("UserSharedInformation");
+                                        var sharedU = new SharedInfo();
+
+                                        sharedU.set("first_name", user.attributes.name);
+                                        sharedU.set("last_name", user.attributes.surname);
+                                        sharedU.set("facebookId", me.id+"");
+                                        sharedU.set("parent", Parse.User.current());
+                                        sharedU.save(null, {
+                                            success: function (data) {
+                                                console.log("successfully added to usersharedinfo table");
+                                                console.log(data);
+                                                //window.location.href = "index.html";
+                                            //    setUserPage();
+                                            },
+                                            error: function (error) {
+                                                console.log(error);
+                                            }
+                                        });
+
+
                                         alert('saved');
                                     },
                                     error: function (myuser, error3) {
-                                        alert(error3);
+                                        console.log(error3);
                                     }
                                 });
                             });
-                        */
+                            //location.reload();
+
+                            alert("User signed up and logged in through Facebook!");
+
+
+                        } else {
+                            alert("User logged in through Facebook!");
+                        }
+                        
+                        
+
                         console.log(user);
+                        setUserPage();
                         //location.reload();
                         // update page without reloading th epage.
+                        /*
                         var CurrentUser = Parse.User.current();
 
                         if (CurrentUser) {
@@ -103,7 +140,7 @@
                             document.getElementById("NameOfUser").innerHTML = FullName;
                             document.getElementById("bd2").style.display = "block";
                         }
-                        
+                        */
                         
                         
                     },
@@ -129,7 +166,8 @@
                         }
 
                         user.save();
-                        location.reload();
+                        //location.reload();
+                        setUserPage();
                     },
                     error: function (user, error) {
                         //alert(error);
@@ -258,6 +296,22 @@
 
                 document.getElementById("NameOfUser").innerHTML = FullName;
                 document.getElementById("bd2").style.display = "block";
+            }
+
+            function setUserPage(){
+                var CurrentUser = Parse.User.current();
+
+                if (CurrentUser) {
+                    document.getElementById("bd1").style.display = "none";
+                    var CurrentUser1 = Parse.User.current();
+                    var FullName = "";
+
+                    FullName += "Hi, ";
+                    FullName += CurrentUser1.attributes.name;
+
+                    document.getElementById("NameOfUser").innerHTML = FullName;
+                    document.getElementById("bd2").style.display = "block";
+                }
             }
         </script>
     </body>
